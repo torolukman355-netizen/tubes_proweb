@@ -25,6 +25,7 @@
             padding-top: 100px;
         }
 
+        /* Menyesuaikan styling untuk nav-link, termasuk yang ada di dalam dropdown */
         .sidebar .nav-link {
             padding: 10px 20px;
             color: #444; 
@@ -32,6 +33,12 @@
         
         .sidebar .nav-link:hover {
             background-color: #f0f0f0; 
+        }
+        
+        /* Mengatasi background aktif pada nav-link utama di sidebar */
+        .sidebar .nav-link.active {
+            background-color: #f0f0f0 !important; /* Agar background aktif tetap terlihat */
+            border-left: 3px solid #0d6efd !important; /* Border primary */
         }
 
         .grid-image {
@@ -88,6 +95,8 @@
                         <i class="fa-solid fa-right-from-bracket me-2"></i> Keluar
                     </a>
                 </li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Pengaturan Lain</a></li>
             </ul>
         </div>
         </div>
@@ -96,7 +105,7 @@
 <div class="sidebar position-fixed bg-white border-end">
     <nav class="nav flex-column">
         
-        <a class="nav-link active bg-light border-start border-3 border-primary" href="#">
+        <a class="nav-link active" href="#">
             <i class="fa-solid fa-house me-2"></i> Beranda
         </a>
         
@@ -104,10 +113,15 @@
             <i class="fa-solid fa-chalkboard-user me-2"></i> Dosen
         </a>
 
-        <a class="nav-link" href="#">
-            <i class="fa-regular fa-calendar me-2"></i> Jadwal
-        </a>
-        
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="jadwalDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-regular fa-calendar me-2"></i> Jadwal
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="jadwalDropdown">
+                <li><a class="dropdown-item" href="#">Jadwal Dosen</a></li>
+                <li><a class="dropdown-item" href="#">Jadwal Kuliah</a></li>
+            </ul>
+        </div>
         <a class="nav-link" href="#">
             <i class="fa-solid fa-book me-2"></i> Kelas
         </a>
