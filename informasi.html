@@ -72,10 +72,25 @@
             <button class="btn btn-outline-success" type="submit">Cari</button>
         </form>
 
-        <a class="nav-link text-dark" href="#">
-            Nama Pengguna <i class="fa-solid fa-circle-user fs-3 ms-3"></i>
-        </a>
-    </div>
+        <div class="dropdown">
+            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Nama Pengguna <i class="fa-solid fa-circle-user fs-3 ms-3"></i>
+            </a>
+            
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-user-gear me-2"></i> Edit Akun
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-right-from-bracket me-2"></i> Keluar
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </div>
 </nav>
 
 <div class="sidebar position-fixed bg-white border-end">
@@ -161,13 +176,13 @@
             
             <div class="col">
                 <div class="card h-100 shadow-sm">
-                    <img src="image/PUI.webp" class="card-img-top-custom" alt="Workshop PUI Rintisan">
+                    <img src="image/PUI.jpg" class="card-img-top-custom" alt="Workshop PUI Rintisan">
                     <div class="card-body">
                         <h5 class="card-title text-success" id="judul-b1">Workshop Pembuatan Roadmap PUI Rintisan di Fasilkom-TI USU</h5>
                         <p class="card-text text-truncate-3">
                             Fakultas Ilmu Komputer dan Teknologi Informasi USU menyelenggarakan Workshop Pembuatan Roadmap PUI Rintisan sebagai langkah strategis memperkuat arah penelitian dan inovasi, dengan melibatkan narasumber berpengalaman dari Universitas Telkom. Melalui kegiatan ini, Fasilkom-TI berharap dapat memperkuat kolaborasi dan menghasilkan arah pengembangan Pusat Unggulan Iptek (PUI) yang jelas.
                         </p>
-                        <button 
+                         <button 
                             type="button" 
                             class="btn btn-sm btn-outline-success trigger-modal" 
                             data-bs-toggle="modal" 
@@ -191,7 +206,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-success" id="judul-b2">Fasilkom-TI USU Sambut Mahasiswa Inbound dari Don Mariano Marcos Memorial State University, Filipina</h5>
                         <p class="card-text text-truncate-3">
-                            Fasilkom-TI USU menyambut enam mahasiswa dan satu dosen dari DMMMSU, Filipina, dalam program Inbound Student and Faculty Exchange. Program ini bertujuan memperkuat jejaring akademik, memberikan pengalaman lintas budaya, serta mendukung visi internasionalisasi pendidikan tinggi USU.
+                            Fasilkom-TI USU menyambut enam mahasiswa dan satu dosen dari DMMMSU, Filipina, dalam program *Inbound Student and Faculty Exchange*. Program ini bertujuan memperkuat jejaring akademik, memberikan pengalaman lintas budaya, serta mendukung visi internasionalisasi pendidikan tinggi USU.
                         </p>
                         <button 
                             type="button" 
@@ -217,7 +232,7 @@
                     <div class="card-body">
                         <h5 class="card-title text-success" id="judul-b3">ICCAI 2025 di USU: Fasilkom-TI Sukses Gelar Konferensi Internasional Bergengsi</h5>
                         <p class="card-text text-truncate-3">
-                            Fasilkom-TI USU sukses menyelenggarakan The 7th International Conference on Computing and Applied Informatics (ICCAI 2025) secara hybrid. Konferensi ini menerima 257 makalah dan menghadirkan narasumber internasional, menjadikannya wadah kolaborasi global untuk mendorong riset inovatif.
+                            Fasilkom-TI USU sukses menyelenggarakan *The 7th International Conference on Computing and Applied Informatics* (ICCAI 2025) secara *hybrid*. Konferensi ini menerima 257 makalah dan menghadirkan narasumber internasional, menjadikannya wadah kolaborasi global untuk mendorong riset inovatif.
                         </p>
                         <button 
                             type="button" 
@@ -374,8 +389,6 @@
 
             modalTitle.textContent = judul;
             modalTanggal.textContent = 'Tanggal Publikasi: ' + tanggal;
-            // Penting: Gunakan innerHTML jika ingin konten modal mendukung format baris baru HTML (misalnya jika data-konten mengandung <br> atau <p>)
-            // Tapi karena kita menggunakan textContent, pastikan konten dimasukkan sebagai plain text.
             modalKonten.textContent = konten;
         });
     });
