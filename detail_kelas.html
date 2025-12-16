@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Detail Kelas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background-color: #f4f6f9;
+}
+
+.schedule-card {
+    border-radius: 18px;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.badge-day {
+    background-color: #0d6efd;
+}
+
+.accordion-button {
+    border-radius: 12px !important;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container mt-5 mb-5">
+    <h3 id="judulKelas" class="mb-2"></h3>
+    <p class="text-muted mb-4">Detail Jadwal & Materi Perkuliahan</p>
+
+    <!-- PILIHAN HARI -->
+    <ul class="nav nav-pills mb-4">
+        <li class="nav-item"><button class="nav-link active" onclick="filterHari('Senin', this)">Senin</button></li>
+        <li class="nav-item"><button class="nav-link" onclick="filterHari('Selasa', this)">Selasa</button></li>
+        <li class="nav-item"><button class="nav-link" onclick="filterHari('Rabu', this)">Rabu</button></li>
+        <li class="nav-item"><button class="nav-link" onclick="filterHari('Kamis', this)">Kamis</button></li>
+        <li class="nav-item"><button class="nav-link" onclick="filterHari('Jumat', this)">Jumat</button></li>
+    </ul>
+
+    <!-- ISI JADWAL -->
+    <div id="jadwalList"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="materiModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ================= AMBIL DATA DARI kelas.html =================
+const kelasAktif = localStorage.getItem("kelas"); // TI - Kom A / TI - Kom B / TI - Kom C
+document.getElementById("judulKelas").innerText = "Kelas " + kelasAktif;
+
+// ================= GENERATE 16 PERTEMUAN =================
+function generatePertemuan(topik) {
+    let arr = [];
+    for (let i = 1; i <= 16; i++) {
+        arr.push({
+            judul: `${topik} - Pertemuan ${i}`,
+            
+        });
+    }
+    return arr;
+}
+
+// ================= DATA JADWAL PER KELAS =================
+const jadwal = {
+    "TI - Kom A": [
+        { hari:"Rabu", mk:"Dasar Pemrograman", dosen:"Prof. Dr. Drs. Opim Salim Sitompul, M.Sc", jam:"08.00 - 10.30",
+              materi: [
+        { judul:"Kontrak Kuliah"},
+        { judul:"Mengenal Dunia Pemrograman"},
+        { judul:"Algoritma"},
+        { judul:"Flowchart"},
+        { judul:"Mengenal Bahasa C"},
+        { judul:"Quiz 1"},
+        { judul:"Variabel, Konstanta, dan Tipe Data"},
+        { judul:"UTS"},
+        { judul:"Operator"},
+        { judul:"Input/Output"},
+        { judul:"Struktur Pemilihan"},
+        { judul:"Struktur Perulangan"},
+        { judul:"Fungsi"},
+        { judul:"Array"},
+        { judul:""},
+        { judul:"UAS"}
+      ]
+         },
+        { hari:"Rabu", mk:"Pengantar TI", dosen:"Mohammad Fadly Syahputra, B.Sc., M.Sc.IT", jam:"10.30 - 13.00", 
+          materi: [
+        { judul:"Kontrak Kuliah dan Pendahuluan"},
+        { judul:"Pengenalan Komputer"},
+        { judul:"Penggunaan Internet dan WWW"},
+        { judul:"Konsep Sistem Komputer"},
+        { judul:"Tugas Pengasahan"},
+        { judul:"Presentasi Tugas Kelompok"},
+        { judul:"Multimedia"},
+        { judul:"UTS"},
+        { judul:"Pengembangan Sistem dan Sistem Informasi"},
+        { judul:"Telekomunikasi dan Jaringan"},
+        { judul:"Pengenalan Database"},
+        { judul:"E-commerce dan E-business"},
+        { judul:"Diskusi"},
+        { judul:"Lanjutan diskusi e-commerce e business"},
+        { judul:"Presentasi TUBES"},
+        { judul:"UAS"}
+      ] },
+
+        { hari:"Rabu", mk:"Organisasi dan Arsitektur Komputer", dosen:"Seniman, S.Kom, M.Kom", jam:"14.40 - 16.20", 
+          materi: [
+        { judul:"Pengenalan Organisasi dan Arsitektur Komputer"},
+        { judul:"AVR,ARM,PIC"},
+        { judul:"Input output device"},
+        { judul:"Pengenalan Sensor PIR"},
+        { judul:"Memory"},
+        { judul:"Timer"},
+        { judul:"Instruction Quiz dan Kisi-Kisi UTS"},
+        { judul:"UTS"},
+        { judul:"Interuption external dan intenal"},
+        { judul:"Komunikasi serial"},
+        { judul:"Serial dan RFID"},
+        { judul:"Komunikasi SPI"},
+        { judul:"Inter integrated Circuit"},
+        { judul:"Input output extension"},
+        { judul:"Diskusi dan Kisi UAS"},
+        { judul:"UAS"}
+      ] },
+        { hari:"Kamis", mk:"Matematika Dasar", dosen:"Aghni Syahmarani, S.Si, M.Si.", jam:"10.30 - 13.00",
+         materi: [
+        { judul:"Himpunan, Bagian Himpunan, Operasi pada himpunan, komponen bilangan, Teorema De Morgan"},
+        { judul:"Bilangan riel, pertidaksamaan nilai mutlak, interval, sistem koordinat linier, sistem koordinat, jarak"},
+        { judul:"Fungsi, fungsi baru dari fungsi lama, komposisi fungsi, fungsi eksponensial, fungsi invers dan logaritma"},
+        { judul:"Introduction to limit"},
+        { judul:"Limit pada tak hingga, limit tak hingga, asymtot horizontal dan vertikal"},
+        { judul:"Continuity"},
+        { judul:"Quiz"},
+        { judul:"UTS"},
+        { judul:"Turunan fungsi polinomial dan eksponensial, aturan turunan, turunan fungsi trigonometri dan aturan rantai"},
+        { judul:"Turunan implicit, turunan fungsi logaritma"},
+        { judul:"Aplikasi turunan ( nilai absolute max dan min, local max dan min, kapan fungsi naik/turun, concav up/down"},
+        { judul:"Diskusi aplikasi turunan"},
+        { judul:"Diskusi aplikasi turunan (lanjutan)"},
+        { judul:"Integral"},
+        { judul:"Integral by part. area and volume"},
+        { judul:"UAS"}
+      ] },
+        { hari:"Jumat", mk:"Pemrograman Web", dosen:"Umaya Ramadhani Putri Nasution, S.TI, M.Kom", jam:"08.00 - 10.30", 
+         materi: [
+        { judul:"Internet dan Web"},
+        { judul:"HTML"},
+        { judul:"Form HTML dan CSS"},
+        { judul:"JavaScript"},
+        { judul:"Bootstrap"},
+        { judul:"Database (MariaDB)"},
+        { judul:"Quiz"},
+        { judul:"UTS"},
+        { judul:"PHP"},
+        { judul:"PHP MySQL"},
+        { judul:"PHP MySQL (2)"},
+        { judul:"PHP MySQL (3)"},
+        { judul:"PHP MySQL (4"},
+        { judul:"PHP MySQL (4) Lanjutan"},
+        { judul:"PHP MySQL (5"},
+        { judul:"UAS"}
+      ] },
+        ],
+
+    "TI - Kom B": [
+        { hari:"Rabu", mk:"Pengantar TI", dosen:"Umaya Ramadhani Putri Nasution, S.TI, M.Kom", jam:"08.00 - 10.30", 
+          materi: [
+        { judul:"Kontrak Kuliah dan Pendahuluan"},
+        { judul:"Pengenalan Komputer"},
+        { judul:"Penggunaan Internet dan WWW"},
+        { judul:"Konsep Sistem Komputer"},
+        { judul:"Tugas Pengasahan"},
+        { judul:"Presentasi Tugas Kelompok"},
+        { judul:"Multimedia"},
+        { judul:"UTS"},
+        { judul:"Pengembangan Sistem dan Sistem Informasi"},
+        { judul:"Telekomunikasi dan Jaringan"},
+        { judul:"Pengenalan Database"},
+        { judul:"E-commerce dan E-business"},
+        { judul:"Diskusi"},
+        { judul:"Lanjutan diskusi e-commerce e business"},
+        { judul:"Presentasi TUBES"},
+        { judul:"UAS"}
+      ] },
+         { hari:"Rabu", mk:"Dasar Pemrograman", dosen:"Ade Sarah Huzaifah, S.Kom., M.Kom", jam:"10.30 - 13.00",
+           materi: [
+        { judul:"Kontrak Kuliah"},
+        { judul:"Mengenal Dunia Pemrograman"},
+        { judul:"Algoritma"},
+        { judul:"Flowchart"},
+        { judul:"Mengenal Bahasa C"},
+        { judul:"Quiz 1"},
+        { judul:"Variabel, Konstanta, dan Tipe Data"},
+        { judul:"UTS"},
+        { judul:"Operator"},
+        { judul:"Input/Output"},
+        { judul:"Struktur Pemilihan"},
+        { judul:"Struktur Perulangan"},
+        { judul:"Fungsi"},
+        { judul:"Array"},
+        { judul:""},
+        { judul:"UAS"}
+      ]
+         },
+
+        { hari:"Kamis", mk:"Matematika Dasar", dosen:"Aghni Syahmarani, S.Si, M.Si.", jam:"08.00 - 10.30",
+         materi: [
+        { judul:"Himpunan, Bagian Himpunan, Operasi pada himpunan, komponen bilangan, Teorema De Morgan"},
+        { judul:"Bilangan riel, pertidaksamaan nilai mutlak, interval, sistem koordinat linier, sistem koordinat, jarak"},
+        { judul:"Fungsi, fungsi baru dari fungsi lama, komposisi fungsi, fungsi eksponensial, fungsi invers dan logaritma"},
+        { judul:"Introduction to limit"},
+        { judul:"Limit pada tak hingga, limit tak hingga, asymtot horizontal dan vertikal"},
+        { judul:"Continuity"},
+        { judul:"Quiz"},
+        { judul:"UTS"},
+        { judul:"Turunan fungsi polinomial dan eksponensial, aturan turunan, turunan fungsi trigonometri dan aturan rantai"},
+        { judul:"Turunan implicit, turunan fungsi logaritma"},
+        { judul:"Aplikasi turunan ( nilai absolute max dan min, local max dan min, kapan fungsi naik/turun, concav up/down"},
+        { judul:"Diskusi aplikasi turunan"},
+        { judul:"Diskusi aplikasi turunan (lanjutan)"},
+        { judul:"Integral"},
+        { judul:"Integral by part. area and volume"},
+        { judul:"UAS"}
+      ] },
+
+        { hari:"Jumat", mk:"Pemrograman Web", dosen:"Ivan Jaya, S.Si., M.Kom.", jam:"08.00 - 10.30", 
+          materi: [
+        { judul:"Internet dan Web"},
+        { judul:"HTML"},
+        { judul:"Form HTML dan CSS"},
+        { judul:"JavaScript"},
+        { judul:"Bootstrap"},
+        { judul:"Database (MariaDB)"},
+        { judul:"Quiz"},
+        { judul:"UTS"},
+        { judul:"PHP"},
+        { judul:"PHP MySQL"},
+        { judul:"PHP MySQL (2)"},
+        { judul:"PHP MySQL (3)"},
+        { judul:"PHP MySQL (4"},
+        { judul:"PHP MySQL (4) Lanjutan"},
+        { judul:"PHP MySQL (5"},
+        { judul:"UAS"}
+      ] },
+
+        { hari:"Jumat", mk:"Organisasi dan Arsitektur Komputer", dosen:"Dr. Niskarto Zendrato, S.Kom., M.Kom", jam:"10.30 - 12.10",
+          materi: [
+        { judul:"Pengenalan Organisasi dan Arsitektur Komputer"},
+        { judul:"AVR,ARM,PIC"},
+        { judul:"Input output device"},
+        { judul:"Pengenalan Sensor PIR"},
+        { judul:"Memory"},
+        { judul:"Timer"},
+        { judul:"Instruction Quiz dan Kisi-Kisi UTS"},
+        { judul:"UTS"},
+        { judul:"Interuption external dan intenal"},
+        { judul:"Komunikasi serial"},
+        { judul:"Serial dan RFID"},
+        { judul:"Komunikasi SPI"},
+        { judul:"Inter integrated Circuit"},
+        { judul:"Input output extension"},
+        { judul:"Diskusi dan Kisi UAS"},
+        { judul:"UAS"}
+      ] },
+    ],
+    "TI - Kom C": [
+       { hari:"Rabu", mk:"Pemrograman Web", dosen:"Ivan Jaya, S.Si., M.Kom.", jam:"08.00 - 10.30",
+         materi: [
+        { judul:"Internet dan Web"},
+        { judul:"HTML"},
+        { judul:"Form HTML dan CSS"},
+        { judul:"JavaScript"},
+        { judul:"Bootstrap"},
+        { judul:"Database (MariaDB)"},
+        { judul:"Quiz"},
+        { judul:"UTS"},
+        { judul:"PHP"},
+        { judul:"PHP MySQL"},
+        { judul:"PHP MySQL (2)"},
+        { judul:"PHP MySQL (3)"},
+        { judul:"PHP MySQL (4"},
+        { judul:"PHP MySQL (4) Lanjutan"},
+        { judul:"PHP MySQL (5"},
+        { judul:"UAS"}
+      ] },
+
+       { hari:"Rabu", mk:"Organisasi dan Arsitektur Komputer", dosen:"Fahrurrozi Lubis, B.IT., M.Sc.IT", jam:"10.30 - 12.10",
+         materi: [
+        { judul:"Pengenalan Organisasi dan Arsitektur Komputer"},
+        { judul:"AVR,ARM,PIC"},
+        { judul:"Input output device"},
+        { judul:"Pengenalan Sensor PIR"},
+        { judul:"Memory"},
+        { judul:"Timer"},
+        { judul:"Instruction Quiz dan Kisi-Kisi UTS"},
+        { judul:"UTS"},
+        { judul:"Interuption external dan intenal"},
+        { judul:"Komunikasi serial"},
+        { judul:"Serial dan RFID"},
+        { judul:"Komunikasi SPI"},
+        { judul:"Inter integrated Circuit"},
+        { judul:"Input output extension"},
+        { judul:"Diskusi dan Kisi UAS"},
+        { judul:"UAS"}
+      ] },
+
+        { hari:"Kamis", mk:"Matematika Dasar", dosen:"Maulida Yanti S.Si., M.Si.", jam:"08.00 - 10.30", 
+         materi: [
+        { judul:"Himpunan, Bagian Himpunan, Operasi pada himpunan, komponen bilangan, Teorema De Morgan"},
+        { judul:"Bilangan riel, pertidaksamaan nilai mutlak, interval, sistem koordinat linier, sistem koordinat, jarak"},
+        { judul:"Fungsi, fungsi baru dari fungsi lama, komposisi fungsi, fungsi eksponensial, fungsi invers dan logaritma"},
+        { judul:"Introduction to limit"},
+        { judul:"Limit pada tak hingga, limit tak hingga, asymtot horizontal dan vertikal"},
+        { judul:"Continuity"},
+        { judul:"Quiz"},
+        { judul:"UTS"},
+        { judul:"Turunan fungsi polinomial dan eksponensial, aturan turunan, turunan fungsi trigonometri dan aturan rantai"},
+        { judul:"Turunan implicit, turunan fungsi logaritma"},
+        { judul:"Aplikasi turunan ( nilai absolute max dan min, local max dan min, kapan fungsi naik/turun, concav up/down"},
+        { judul:"Diskusi aplikasi turunan"},
+        { judul:"Diskusi aplikasi turunan (lanjutan)"},
+        { judul:"Integral"},
+        { judul:"Integral by part. area and volume"},
+        { judul:"UAS"}
+      ] },
+
+        { hari:"Kamis", mk:"Dasar Pemrograman", dosen:"Ade Sarah Huzaifah, S.Kom., M.Kom", jam:"13.50 - 16.20",
+          materi: [
+        { judul:"Kontrak Kuliah"},
+        { judul:"Mengenal Dunia Pemrograman"},
+        { judul:"Algoritma"},
+        { judul:"Flowchart"},
+        { judul:"Mengenal Bahasa C"},
+        { judul:"Quiz 1"},
+        { judul:"Variabel, Konstanta, dan Tipe Data"},
+        { judul:"UTS"},
+        { judul:"Operator"},
+        { judul:"Input/Output"},
+        { judul:"Struktur Pemilihan"},
+        { judul:"Struktur Perulangan"},
+        { judul:"Fungsi"},
+        { judul:"Array"},
+        { judul:""},
+        { judul:"UAS"}
+      ]
+         },
+
+        { hari:"Jumat", mk:"Pengantar TI", dosen:"Fanindia Purnamasari, S.TI,M.IT", jam:"08.00 - 10.30", 
+         materi: [
+        { judul:"Kontrak Kuliah dan Pendahuluan"},
+        { judul:"Pengenalan Komputer"},
+        { judul:"Penggunaan Internet dan WWW"},
+        { judul:"Konsep Sistem Komputer"},
+        { judul:"Tugas Pengasahan"},
+        { judul:"Presentasi Tugas Kelompok"},
+        { judul:"Multimedia"},
+        { judul:"UTS"},
+        { judul:"Pengembangan Sistem dan Sistem Informasi"},
+        { judul:"Telekomunikasi dan Jaringan"},
+        { judul:"Pengenalan Database"},
+        { judul:"E-commerce dan E-business"},
+        { judul:"Diskusi"},
+        { judul:"Lanjutan diskusi e-commerce e business"},
+        { judul:"Presentasi TUBES"},
+        { judul:"UAS"}
+      ] },
+    ]
+};
+
+// ================= FILTER HARI =================
+function filterHari(hari, el) {
+    document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+    el.classList.add('active');
+
+    const container = document.getElementById("jadwalList");
+    container.innerHTML = "";
+
+    const data = jadwal[kelasAktif]?.filter(j => j.hari === hari) || [];
+
+    if (data.length === 0) {
+        container.innerHTML = `<div class="alert alert-warning">Tidak ada jadwal.</div>`;
+        return;
+    }
+
+    data.forEach((j, idx) => {
+        let acc = "";
+        j.materi.forEach((m, i) => {
+            acc += `
+            <div class="accordion-item mb-2">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#acc${idx}${i}">
+                        Pertemuan ${i + 1}
+                    </button>
+                </h2>
+                <div id="acc${idx}${i}" class="accordion-collapse collapse">
+                    <div class="accordion-body d-flex justify-content-between align-items-center">
+                        <span>${m.judul}</span>
+                        
+                        
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+        });
+
+        container.innerHTML += `
+        <div class="card schedule-card p-4 mb-4">
+            <div class="d-flex justify-content-between">
+                <h5>${j.mk}</h5>
+                <span class="badge badge-day">${j.hari}</span>
+            </div>
+            <p class="mb-1"><strong>Dosen:</strong> ${j.dosen}</p>
+            <p class="mb-1"><strong>Jam:</strong> ${j.jam}</p>
+            <div class="accordion mt-3">${acc}</div>
+        </div>`;
+    });
+}
+
+// ================= MODAL =================
+function openModal(judul, isi) {
+    document.getElementById("modalTitle").innerText = judul;
+    document.getElementById("modalBody").innerText = isi;
+    new bootstrap.Modal(document.getElementById("materiModal")).show();
+}
+
+// DEFAULT
+filterHari("Senin", document.querySelector(".nav-link.active"));
+</script>
+
+</body>
+</html>
