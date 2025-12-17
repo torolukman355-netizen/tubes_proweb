@@ -22,7 +22,7 @@
             padding-top: 80px;
             background-color: #28a745;
             border-right: 1px solid #1e7e34;
-            z-index: 1000; 
+            z-index: 1000;
         }
         .main-content {
             margin-left: 250px;
@@ -33,12 +33,13 @@
         }
         .sidebar .nav-link {
             padding: 10px 20px;
-            color: #ffffff;
+            color: #000000;
+            background-color: #ffffff;
             transition: all 0.3s ease; 
         }
         .sidebar .nav-link:hover {
-            background-color: #218838;
-            color: #ffffff;
+            background-color: #A5D6A7;
+            color: #ffffff; 
             box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
         }
         .sidebar .nav-link.active {
@@ -59,9 +60,15 @@
             color: #ffffff !important;
         }
         .dropdown-menu {
-            background-color: #28a745;
-            border: 1px solid #1e7e34;
-            color: #ffffff; 
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px); 
+            pointer-events: none;
+        }
+        .dropdown-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto; 
         }
         .dropdown-item {
             color: #ffffff; 
@@ -81,13 +88,13 @@
             color: #000000; 
         }
         .register-container h2 {
-            color: #28a745;
+            color: #289f44;
             text-align: center;
         }
         .btn-success-custom {
             width: 100%;
             padding: 10px;
-            background: linear-gradient(135deg, #28a745, #20c997);
+            background: linear-gradient(135deg, #28a745, #189431);
             color: #ffffff;
             border: none;
             border-radius: 5px;
@@ -131,6 +138,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
     <div class="container-fluid container">
         <a class="navbar-brand" href="#">
+            <img src="image/logo usu.jpg" alt="Logo USU" width="50" height="50">
             <img src="image/satuti.png" alt="Satu TI Logo" width="100" height="50">
         </a>
         
