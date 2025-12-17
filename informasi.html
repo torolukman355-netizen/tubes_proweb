@@ -11,53 +11,157 @@
     <title>Satu TI - Portal</title>
 
     <style>
+        :root {
+            --green-main: #28a745;
+            --green-dark: #1e7e34;
+            --green-soft: #eaf7ee;
+            --green-hover: #d4edda;
+            --white: #ffffff;
+            --gray-text: #555;
+        }
+        body {
+            background-color: var(--white);
+            color: var(--gray-text);
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+            background-color: var(--white);
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .navbar .nav-link {
+            position: relative;
+            color: var(--gray-text);
+            transition: color 0.3s ease;
+        }
+        .navbar .nav-link:hover {
+            color: var(--green-main);
+        }
+        .navbar .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--green-main);
+            transition: width 0.3s ease;
+        }
+        .navbar .nav-link:hover::after {
+            width: 100%;
+        }
         .sidebar {
             width: 250px;
             height: 100vh;
             padding-top: 80px;
-            z-index: 1000; 
+            background-color: var(--white);
+            border-right: 1px solid #ddd;
+            z-index: 1000;
         }
-
+        .sidebar .nav-link {
+            padding: 10px 20px;
+            margin: 4px 10px;
+            border-radius: 8px;
+            color: var(--gray-text);
+            transform: translateX(0);
+            transition:
+                background-color 0.25s ease,
+                transform 0.25s ease,
+                color 0.25s ease;
+        }
+        .sidebar .nav-link:hover {
+            background-color: var(--green-soft);
+            color: var(--green-dark);
+            transform: translateX(6px);
+        }
+        .sidebar .nav-link.active {
+            background-color: var(--green-main) !important;
+            color: #fff !important;
+            font-weight: 600;
+            border-left: 4px solid var(--green-dark) !important;
+        }
         .main-content {
             margin-left: 250px;
             padding: 20px;
             padding-top: 100px;
         }
-
-        .sidebar .nav-link {
-            padding: 10px 20px;
-            color: #444; 
+        .dropdown-menu {
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease,
+                visibility 0.25s;
         }
-        
-        .sidebar .nav-link:hover {
-            background-color: #f0f0f0; 
+        .dropdown.show .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
-
-        .sidebar .nav-link.active {
-            background-color: #f0f0f0 !important; 
-            border-left: 3px solid #0d6efd !important; 
+        .card {
+            border: none;
+            border-radius: 14px;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
         }
-
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        }
         .grid-image {
             width: 100%;
             height: 150px;
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 15px;
+            transition: transform 0.35s ease;
         }
-
         .card-img-top-custom {
             height: 150px;
             object-fit: cover;
+            transition: transform 0.35s ease;
         }
-        
+        .grid-image:hover,
+        .card-img-top-custom:hover {
+            transform: scale(1.05);
+        }
         .text-truncate-3 {
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: 10px; 
+            margin-bottom: 10px;
+        }
+        .btn-outline-success,
+        .btn-outline-primary {
+            transition:
+                background-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.2s ease;
+        }
+        .btn-outline-success:hover,
+        .btn-outline-primary:hover {
+            transform: translateY(-2px);
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }   
+        .main-content > * {
+            animation: fadeUp 0.6s ease forwards;
         }
     </style>
 </head>
@@ -66,7 +170,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
     <div class="container-fluid container">
         <a class="navbar-brand" href="#">
-            <img src="image/satuti.png" alt="Satu TI Logo" width="100" height="60">
+            <img src="image/logo usu.jpg" alt="Logo USU" width="50" height="50">
+            <img src="image/satuti.png" alt="Satu TI Logo" width="100" height="50">
         </a>
         
         <form class="d-flex mx-auto" role="search" style="max-width: 500px;">
@@ -75,23 +180,20 @@
         </form>
 
         <div class="dropdown">
-            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Nama Pengguna <i class="fa-solid fa-circle-user fs-3 ms-3"></i>
-            </a>
-            
-            <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa-solid fa-user-gear me-2"></i> Edit Akun
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa-solid fa-right-from-bracket me-2"></i> Keluar
-                    </a>
-                </li>
-            </ul>
-        </div>
+            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nama Pengguna <i class="fa-solid fa-circle-user fs-3 ms-3"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa-solid fa-user-gear me-2"></i> Edit Akun
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa-solid fa-right-from-bracket me-2"></i> Keluar
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 </nav>
 
