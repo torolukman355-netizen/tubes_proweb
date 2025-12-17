@@ -185,24 +185,28 @@
                 <input class="form-control me-2" type="search" placeholder="Cari..." aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Cari</button>
             </form>
-            <div class="dropdown">
-                <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Nama Pengguna <i class="fa-solid fa-circle-user fs-3 ms-3"></i>
+            <div class="dropdown user-dropdown">
+                <a class="d-flex align-items-center gap-2 text-dark text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="fw-semibold">Nama Pengguna</span>
+                <span class="user-avatar">
+                <i class="fa-solid fa-user"></i>
+                </span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa-solid fa-user-gear me-2"></i> Edit Akun
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa-solid fa-right-from-bracket me-2"></i> Keluar
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
+            <ul class="dropdown-menu dropdown-menu-end user-menu">
+                <li>
+            <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                <i class="fa-solid fa-user-gear"></i> Edit Akun</a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+        <li>
+            <a class="dropdown-item text-danger d-flex align-items-center gap-2" href="#">
+                <i class="fa-solid fa-right-from-bracket"></i> Keluar
+            </a>
+        </li>
+    </ul>
+</div>
+</div>
     </nav>
 
     <div class="sidebar position-fixed bg-white border-end">
