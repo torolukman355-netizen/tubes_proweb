@@ -194,6 +194,32 @@
         .btn-outline-success:hover{
             transform:translateY(-2px);
         }
+        .portal-footer {
+            margin-left: 250px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #ddd;
+            padding: 30px 0 15px;
+            color: var(--gray-text);
+        }
+        .footer-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--green-dark);
+        }
+        .footer-link {
+            color: var(--gray-text);
+            text-decoration: none;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+        }
+        .footer-link:hover {
+            color: var(--green-main);
+            padding-left: 6px;
+        }
+        @media (max-width: 992px) {
+            .portal-footer {
+                margin-left: 0;
+            }
+        }
         @keyframes fadeUp{
             from{
                 opacity:0;
