@@ -132,7 +132,6 @@
         .user-dropdown .dropdown-toggle::after {
             display: none;
         }
-
         .user-avatar {
             width: 38px;
             height: 38px;
@@ -226,17 +225,28 @@
             <button class="btn btn-outline-success" type="submit">Cari</button>
         </form>
 
-        <div class="dropdown ms-auto">
-            <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">
-                Nama Pengguna <i class="fa-solid fa-circle-user fs-4 ms-2 text-success"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-3">
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user-gear me-2"></i> Edit Akun</a></li>
+        <div class="dropdown user-dropdown">
+                <a class="d-flex align-items-center gap-2 text-dark text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="fw-semibold">Nama Pengguna</span>
+                <span class="user-avatar">
+                <i class="fa-solid fa-user"></i>
+                </span>
+                </a>
+
+            <ul class="dropdown-menu dropdown-menu-end user-menu">
+                <li>
+            <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                <i class="fa-solid fa-user-gear"></i> Edit Akun</a>
+                </li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="#"><i class="fa-solid fa-right-from-bracket me-2"></i> Keluar</a></li>
-            </ul>
-        </div>
-    </div>
+        <li>
+            <a class="dropdown-item text-danger d-flex align-items-center gap-2" href="#">
+                <i class="fa-solid fa-right-from-bracket"></i> Keluar
+            </a>
+        </li>
+    </ul>
+</div>
+</div>
 </nav>
 
 <div class="sidebar position-fixed bg-white border-end">
@@ -487,6 +497,3 @@
 </div>
 </body>
 </html>
-
-
-
