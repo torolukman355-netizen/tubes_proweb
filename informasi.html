@@ -129,6 +129,38 @@
             transform: translateY(-6px);
             box-shadow: 0 12px 28px rgba(0,0,0,0.15);
         }
+        .user-dropdown .dropdown-toggle::after {
+            display: none;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            background-color: var(--green-main);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .user-menu {
+            min-width: 200px;
+            padding: 10px 0;
+            border-radius: 14px;
+            border: none;
+            box-shadow: 0 12px 30px rgba(0,0,0,.15);
+        }
+        .user-menu .dropdown-item {
+            padding: 10px 18px;
+            border-radius: 8px;
+            margin: 2px 8px;
+            transition: background-color .2s ease, transform .2s ease;
+        }
+        .user-menu .dropdown-item:hover {
+            background-color: var(--green-soft);
+            transform: translateX(4px);
+        }
         .grid-image {
             width: 100%;
             height: 150px;
@@ -194,22 +226,35 @@
             <button class="btn btn-outline-success" type="submit">Cari</button>
         </form>
 
-        <div class="dropdown">
-            <a class="nav-link text-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Nama Pengguna <i class="fa-solid fa-circle-user fs-3 ms-3"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa-solid fa-user-gear me-2"></i> Edit Akun
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="fa-solid fa-right-from-bracket me-2"></i> Keluar
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <div class="dropdown user-dropdown">
+    <a class="d-flex align-items-center gap-2 text-dark text-decoration-none dropdown-toggle"
+       href="#"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-expanded="false">
+       
+        <span class="fw-semibold">Nama Pengguna</span>
+
+        <span class="user-avatar">
+            <i class="fa-solid fa-user"></i>
+        </span>
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end user-menu">
+        <li>
+            <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                <i class="fa-solid fa-user-gear"></i> Edit Akun
+            </a>
+        </li>
+        <li><hr class="dropdown-divider"></li>
+        <li>
+            <a class="dropdown-item text-danger d-flex align-items-center gap-2" href="#">
+                <i class="fa-solid fa-right-from-bracket"></i> Keluar
+            </a>
+        </li>
+    </ul>
+</div>
+</div>
 </nav>
 
 <div class="sidebar position-fixed bg-white border-end">
