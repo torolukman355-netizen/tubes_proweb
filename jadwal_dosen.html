@@ -22,29 +22,39 @@
             font-family:'Segoe UI',Arial,sans-serif;
             color:#222;
         }
-        .navbar{
-            transition:box-shadow .3s ease;
+        .navbar {
+            background-color: var(--white);
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
         }
-        .navbar .nav-link{
-            color:var(--gray-text);
-            position:relative;
-            transition:color .3s ease;
+
+        .navbar .nav-link {
+            position: relative;
         }
-        .navbar .nav-link:hover{
-            color:var(--green-main);
+        .navbar .nav-link:hover {
+            color: var(--green-main);
         }
-        .navbar .nav-link::after{
+        .navbar .nav-link::after {
             content:"";
             position:absolute;
             left:0;
             bottom:-4px;
             width:0;
-            height:2px;
-            background:var(--green-main);
-            transition:width .3s ease;
+            height:3px;
+            background: linear-gradient(
+                90deg,
+                #28a745,
+                #6fdc8c,
+                #28a745
+         );
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px rgba(40,167,69,.5);
         }
-        .navbar .nav-link:hover::after{
-            width:100%;
+        .navbar .nav-link:hover::before, .navbar .nav-link.dropdown-toogle.show::before {
+            width: 100%;
+        }
+        .navbar .dropdown-toggle::after{
+            display: none !important;
         }
         .sidebar{
             width:250px;
