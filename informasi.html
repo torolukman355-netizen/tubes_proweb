@@ -86,7 +86,6 @@
             padding-top: 100px;
         }
         .dropdown-menu {
-            display: block;
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
@@ -97,11 +96,19 @@
                 opacity 0.25s ease,
                 transform 0.25s ease,
                 visibility 0.25s;
+            z-index: 2000;
         }
-        .dropdown.show .dropdown-menu {
+        .dropdown-menu.show {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
+        }
+        .dropdown-item {
+            transition: background-color .2s ease, padding-left .2s ease;
+        }
+        .dropdown-item:hover {
+            background-color: var(--green-soft);
+            padding-left: 1.25rem;
         }
         .card {
             border: none;
