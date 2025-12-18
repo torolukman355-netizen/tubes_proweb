@@ -18,7 +18,7 @@ session_destroy();
 // Tambahkan script JS untuk memastikan pindah halaman jika header gagal
 echo "<script>
     alert('Anda telah keluar.');
-    window.location.href = 'login.html';
+    window.location.href = 'login.php';
 </script>";
 exit();
 ?>

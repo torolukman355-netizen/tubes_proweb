@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,19 +27,16 @@
 
         <div class="dropdown user-dropdown">
             <a class="d-flex align-items-center gap-3 text-decoration-none" href="#" role="button" data-bs-toggle="dropdown">
-                <div class="text-end d-none d-sm-block">
-                    <div class="fw-bold text-dark" style="font-size: 0.9rem;">Nama Pengguna</div>
-                    <div class="text-muted" style="font-size: 0.75rem;">Mahasiswa Aktif</div>
-                </div>
+                <div class="text-end d-none d-sm-block"></div>
                 <div style="width: 42px; height: 42px; background: var(--usu-green); border-radius: 12px; display: grid; place-items: center; color: white;">
                     <i class="fa-solid fa-user"></i>
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 py-2" style="border-radius: 15px;">
-                <li><a class="dropdown-item py-2" href="profil.html"><i class="fa-solid fa-id-card me-2"></i> Profil Saya</a></li>
-                <li><a class="dropdown-item py-2" href="edit_akun.html"><i class="fa-solid fa-gear me-2"></i> Pengaturan</a></li>
+                <li><a class="dropdown-item py-2" href="profil.php"><i class="fa-solid fa-id-card me-2"></i> Profil Saya</a></li>
+                <li><a class="dropdown-item py-2" href="edit_akun.php"><i class="fa-solid fa-gear me-2"></i> Pengaturan</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item py-2 text-danger" href="logout.html"><i class="fa-solid fa-power-off me-2"></i> Keluar</a></li>
+                <li><a class="dropdown-item py-2 text-danger" href="logout.php"><i class="fa-solid fa-power-off me-2"></i> Keluar</a></li>
             </ul>
         </div>
     </div>
@@ -47,16 +44,16 @@
 
 <div class="sidebar">
     <nav class="nav flex-column">
-        <a class="nav-link active" href="index.html"><i class="fa-solid fa-house"></i> Beranda</a>
-        <a class="nav-link" href="profil_dosen.html"><i class="fa-solid fa-chalkboard-user"></i> Dosen</a>
+        <a class="nav-link active" href="index.php"><i class="fa-solid fa-house"></i> Beranda</a>
+        <a class="nav-link" href="profil_dosen.php"><i class="fa-solid fa-chalkboard-user"></i> Dosen</a>
         <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="jadwalDrop" data-bs-toggle="dropdown"><i class="fa-solid fa-calendar-days"></i> Jadwal</a>
             <ul class="dropdown-menu border-0 shadow-sm ms-3">
-                <li><a class="dropdown-item" href="jadwal_dosen.html">Jadwal Dosen</a></li>
-                <li><a class="dropdown-item" href="jadwal_mahasiswa.html">Jadwal Kuliah</a></li>
+                <li><a class="dropdown-item" href="jadwal_dosen.php">Jadwal Dosen</a></li>
+                <li><a class="dropdown-item" href="jadwal_mahasiswa.php">Jadwal Kuliah</a></li>
             </ul>
         </div>
-        <a class="nav-link" href="kelas.html"><i class="fa-solid fa-graduation-cap"></i> Kelas</a>
+        <a class="nav-link" href="kelas.php"><i class="fa-solid fa-graduation-cap"></i> Kelas</a>
     </nav>
 </div>
 
@@ -287,10 +284,10 @@
             <!-- Navigasi -->
             <div class="col-lg-4 col-md-6">
                 <h6 class="footer-title">Navigasi</h6>
-                <a href="#" class="footer-link">Beranda</a>
-                <a href="profil_dosen.html" class="footer-link">Dosen</a>
-                <a href="jadwal_mahasiswa.html" class="footer-link">Jadwal Perkuliahan</a>
-                <a href="kelas.html" class="footer-link">Informasi Kelas</a>
+                <a href="index.php" class="footer-link">Beranda</a>
+                <a href="profil_dosen.php" class="footer-link">Dosen</a>
+                <a href="jadwal_mahasiswa.php" class="footer-link">Jadwal Perkuliahan</a>
+                <a href="kelas.php" class="footer-link">Informasi Kelas</a>
             </div>
 
             <!-- Kontak -->

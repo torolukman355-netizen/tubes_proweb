@@ -64,25 +64,22 @@ if (isset($_POST['simpan'])) {
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
         <div class="d-flex align-items-center">
-            <a class="navbar-brand me-4" href="index.html">
+            <a class="navbar-brand me-4" href="index.php">
                 <img src="image/logo usu.jpg" alt="USU" style="height: 40px;">
                 <img src="image/satuti.png" alt="Satu TI" class="ms-1" style="height: 40px;">
             </a>
         </div>
         <div class="dropdown">
             <a class="d-flex align-items-center gap-3 text-decoration-none" href="#" data-bs-toggle="dropdown">
-                <div class="text-end d-none d-sm-block">
-                    <div class="fw-bold text-dark small"><?= htmlspecialchars($data['nama_lengkap']); ?></div>
-                    <div class="text-muted" style="font-size: 0.7rem;">Mahasiswa Aktif</div>
-                </div>
+                <div class="text-end d-none d-sm-block"></div>
                 <div style="width: 38px; height: 38px; background: var(--usu-green); border-radius: 10px; display: grid; place-items: center; color: white;">
                     <i class="fa-solid fa-user"></i>
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg">
-                <li><a class="dropdown-item" href="profil.html"><i class="fa-solid fa-id-card me-2"></i> Profil</a></li>
+                <li><a class="dropdown-item" href="profil.php"><i class="fa-solid fa-id-card me-2"></i> Profil</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="logout.html"><i class="fa-solid fa-power-off me-2"></i> Keluar</a></li>
+                <li><a class="dropdown-item text-danger" href="logout.php"><i class="fa-solid fa-power-off me-2"></i> Keluar</a></li>
             </ul>
         </div>
     </div>
@@ -90,16 +87,16 @@ if (isset($_POST['simpan'])) {
 
 <div class="sidebar">
     <nav class="nav flex-column">
-        <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i> Beranda</a>
-        <a class="nav-link" href="profil_dosen.html"><i class="fa-solid fa-chalkboard-user"></i> Dosen</a>
+        <a class="nav-link" href="index.php"><i class="fa-solid fa-house"></i> Beranda</a>
+        <a class="nav-link" href="profil_dosen.php"><i class="fa-solid fa-chalkboard-user"></i> Dosen</a>
         <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-calendar-days"></i> Jadwal</a>
             <ul class="dropdown-menu border-0 shadow-sm ms-3">
-                <li><a class="dropdown-item" href="jadwal_dosen.html">Jadwal Dosen</a></li>
-                <li><a class="dropdown-item" href="jadwal_mahasiswa.html">Jadwal Kuliah</a></li>
+                <li><a class="dropdown-item" href="jadwal_dosen.php">Jadwal Dosen</a></li>
+                <li><a class="dropdown-item" href="jadwal_mahasiswa.php">Jadwal Kuliah</a></li>
             </ul>
         </div>
-        <a class="nav-link" href="kelas.html"><i class="fa-solid fa-graduation-cap"></i> Kelas</a>
+        <a class="nav-link" href="kelas.php"><i class="fa-solid fa-graduation-cap"></i> Kelas</a>
     </nav>
 </div>
 
@@ -143,7 +140,7 @@ if (isset($_POST['simpan'])) {
                         <button type="submit" name="simpan" class="btn btn-success px-4 rounded-pill">
                             <i class="fa-solid fa-floppy-disk me-2"></i> Simpan Perubahan
                         </button>
-                        <a href="profil.html" class="btn btn-outline-secondary px-4 rounded-pill ms-2">Batal</a>
+                        <a href="profil.php" class="btn btn-outline-secondary px-4 rounded-pill ms-2">Batal</a>
                     </div>
                 </div>
             </form>
@@ -185,10 +182,10 @@ if (isset($_POST['simpan'])) {
             <!-- Navigasi -->
             <div class="col-lg-4 col-md-6">
                 <h6 class="footer-title">Navigasi</h6>
-                <a href="#" class="footer-link">Beranda</a>
-                <a href="profil_dosen.html" class="footer-link">Dosen</a>
-                <a href="jadwal_mahasiswa.html" class="footer-link">Jadwal Perkuliahan</a>
-                <a href="kelas.html" class="footer-link">Informasi Kelas</a>
+                <a href="index.php" class="footer-link">Beranda</a>
+                <a href="profil_dosen.php" class="footer-link">Dosen</a>
+                <a href="jadwal_mahasiswa.php" class="footer-link">Jadwal Perkuliahan</a>
+                <a href="kelas.php" class="footer-link">Informasi Kelas</a>
             </div>
 
             <!-- Kontak -->

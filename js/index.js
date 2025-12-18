@@ -1,20 +1,17 @@
 
     document.addEventListener('DOMContentLoaded', function() {
-        /**
-         * 1. PENGATURAN MODAL DINAMIS
-         * Mengambil data dari atribut tombol dan memasukkannya ke dalam Modal
-         */
+        /**1. PENGATURAN MODAL DINAMIS*/
         const beritaModal = document.getElementById('beritaModal');
         if (beritaModal) {
             beritaModal.addEventListener('show.bs.modal', event => {
-                const button = event.relatedTarget; // Tombol yang diklik
+                const button = event.relatedTarget; 
                 
-                // Ambil data dari atribut data-*
+                
                 const judul = button.getAttribute('data-judul');
                 const tanggal = button.getAttribute('data-tanggal');
                 const konten = button.getAttribute('data-konten');
 
-                // Update elemen di dalam modal
+         
                 const modalTitle = beritaModal.querySelector('#modalTitle');
                 const modalDate = beritaModal.querySelector('#modalDate');
                 const modalContent = beritaModal.querySelector('#modalContent');
@@ -30,10 +27,7 @@
             });
         }
 
-        /**
-         * 2. EFEK NAVBAR SAAT SCROLL
-         * Memberikan bayangan pada navbar saat halaman digulir ke bawah
-         */
+        /*2. EFEK NAVBAR SAAT SCROLL*/
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -45,10 +39,7 @@
             }
         });
 
-        /**
-         * 3. INTERAKSI SEARCH BOX
-         * Feedback visual saat user mengetik di kolom pencarian
-         */
+        /* 3. INTERAKSI SEARCH BOX*/
         const searchInput = document.querySelector('.search-box input');
         const searchIcon = document.querySelector('.search-box i');
 
@@ -62,17 +53,14 @@
             });
 
             searchInput.addEventListener('keyup', (e) => {
-                // Contoh logika sederhana: tekan Enter untuk cari
+               
                 if (e.key === 'Enter') {
                     alert('Mencari: ' + searchInput.value);
                 }
             });
         }
 
-        /**
-         * 4. SMOOTH SCROLLING
-         * Membuat pergerakan scroll menjadi halus untuk link internal
-         */
+      
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 if(this.getAttribute('href') !== "#") {

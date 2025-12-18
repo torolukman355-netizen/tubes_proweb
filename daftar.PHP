@@ -1,15 +1,15 @@
 <?php
-// Pastikan file ini ada dan isinya benar
+
 include "koneksi.php";
 
-// Cek apakah variabel $koneksi terbaca
+
 if (!$koneksi) {
     die("Koneksi Database Gagal: " . mysqli_connect_error());
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Ambil data dan amankan string
+
     $nama     = mysqli_real_escape_string($koneksi, $_POST['nama']);
     $nim      = mysqli_real_escape_string($koneksi, $_POST['nim_nip']);
     $email    = mysqli_real_escape_string($koneksi, $_POST['email']);
@@ -18,23 +18,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tanggal  = mysqli_real_escape_string($koneksi, $_POST['tanggal']);
     $role     = mysqli_real_escape_string($koneksi, $_POST['role']);
 
-    // --- MULAI PERBAIKAN ---
+
     
-    // 1. Cek apakah NIM atau Email sudah ada di database
+  
     $cek_duplikat = mysqli_query($koneksi, "SELECT nim_nip, email FROM users WHERE nim_nip = '$nim' OR email = '$email'");
 
     if (mysqli_num_rows($cek_duplikat) > 0) {
-        // Jika ditemukan data (artinya sudah ada)
+       
         echo "<script>
                 alert('Pendaftaran Gagal! NIM/NIP atau Email sudah terdaftar sebelumnya.');
                 window.history.back(); // Kembali ke halaman form
               </script>";
-        exit; // Hentikan script agar tidak lanjut ke proses INSERT
+        exit;
     }
 
-    // --- AKHIR PERBAIKAN ---
 
-    // 2. Jika lolos pengecekan (tidak ada duplikat), baru lakukan INSERT
+
+
     $sql = "INSERT INTO users 
             (nama_lengkap, nim_nip, email, password, tempat_lahir, tanggal_lahir, role)
             VALUES
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="post">
             <input type="text" name="nama" placeholder="Nama Lengkap" required>
-            <input type="text" name="nim" placeholder="NIM / NIP" required>
+            <input type="text" name="nim_nip" placeholder="NIM / NIP" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
 
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
 </div>
-<!-- <script src="js/daftar.js"></script> -->
+ <script src="js/daftar.js"></script>
 </body>
 </body>
 </html>

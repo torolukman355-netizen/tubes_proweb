@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // --- 1. FITUR TOGGLE PASSWORD (MATA) ---
-    // Kode ini otomatis menambahkan ikon mata ke input password
+    d
     const passwordInputs = document.querySelectorAll('input[type="password"]');
     
     passwordInputs.forEach(function(passwordInput) {
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleBtn.style.cursor = 'pointer';
         toggleBtn.style.color = '#888';
         toggleBtn.style.fontSize = '1.2rem';
-        toggleBtn.style.userSelect = 'none'; // Agar ikon tidak terblok saat diklik
+        toggleBtn.style.userSelect = 'none'; 
         
         wrapper.appendChild(toggleBtn);
         
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
                 toggleBtn.style.opacity = '1';
-                toggleBtn.style.color = '#333'; // Warna lebih gelap saat terlihat
+                toggleBtn.style.color = '#333'; 
             } else {
                 passwordInput.type = "password";
                 toggleBtn.style.opacity = '0.5';
@@ -47,21 +47,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (formElement) {
         formElement.addEventListener('submit', function(e) {
-            // PENTING: JANGAN PAKAI e.preventDefault() DISINI!
-            // Biarkan form dikirim ke PHP secara alami.
-            
+           
             const button = formElement.querySelector('button[type="submit"]');
             
             if (button) {
-                // Ubah teks tombol agar user tahu sedang memproses
+               
                 const originalText = button.innerText;
                 button.innerText = "Memproses...";
                 button.style.opacity = "0.7";
                 button.style.cursor = "wait";
                 
-                // Opsional: Disable tombol agar tidak diklik 2x (double post)
-                // Hati-hati: Jika validasi HTML gagal (misal email salah), tombol harus di-enable lagi.
-                // Namun untuk form sederhana, membiarkan browser menangani reload sudah cukup.
+                
             }
         });
     }
