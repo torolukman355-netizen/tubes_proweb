@@ -1,0 +1,175 @@
+<?php
+session_start();
+include 'koneksi.php'; // Pastikan koneksi menggunakan variabel $koneksi
+
+// Proteksi Halaman: Jika session user_id tidak ada, tendang ke login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+$id = $_SESSION['user_id'];
+
+// Ambil data user dari tabel users berdasarkan ID session
+$query = "SELECT * FROM users WHERE id = '$id'";
+$result = mysqli_query($koneksi, $query);
+$user = mysqli_fetch_assoc($result);
+
+// Penanganan jika data tidak ditemukan
+if (!$user) {
+    echo "Data pengguna tidak ditemukan di database.";
+    exit();
+}
+
+$role_display = ucfirst($user['role']);
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - Satu TI</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/profil.css">
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand me-4" href="#">
+                <img src="image/logo usu.jpg" alt="USU">
+                <img src="image/satuti.png" alt="Satu TI" class="ms-1">
+            </a>
+            <div class="search-box d-none d-lg-block">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="form-control" placeholder="Cari info akademik, dosen, atau berita...">
+            </div>
+        </div>
+
+        <div class="dropdown user-dropdown">
+            <a class="d-flex align-items-center gap-3 text-decoration-none" href="#" role="button" data-bs-toggle="dropdown">
+                <div class="text-end d-none d-sm-block">
+                    <div class="fw-bold text-dark" style="font-size: 0.9rem;">Nama Pengguna</div>
+                    <div class="text-muted" style="font-size: 0.75rem;">Mahasiswa Aktif</div>
+                </div>
+                <div style="width: 42px; height: 42px; background: var(--usu-green); border-radius: 12px; display: grid; place-items: center; color: white;">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 py-2" style="border-radius: 15px;">
+                <li><a class="dropdown-item py-2" href="profil.php"><i class="fa-solid fa-id-card me-2"></i> Profil Saya</a></li>
+                <li><a class="dropdown-item py-2" href="edit_akun.php"><i class="fa-solid fa-gear me-2"></i> Pengaturan</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+    <a class="dropdown-item py-2 text-danger" href="logout.php">
+        <i class="fa-solid fa-power-off me-2"></i> Keluar
+    </a>
+</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="sidebar">
+    <nav class="nav flex-column">
+        <a class="nav-link" href="index.php"><i class="fa-solid fa-house"></i> Beranda</a>
+        <a class="nav-link" href="profil_dosen.php"><i class="fa-solid fa-chalkboard-user"></i> Dosen</a>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="jadwalDrop" data-bs-toggle="dropdown"><i class="fa-solid fa-calendar-days"></i> Jadwal</a>
+            <ul class="dropdown-menu border-0 shadow-sm ms-3">
+                <li><a class="dropdown-item" href="jadwal_dosen.php">Jadwal Dosen</a></li>
+                <li><a class="dropdown-item" href="jadwal_mahasiswa.php">Jadwal Kuliah</a></li>
+            </ul>
+        </div>
+        <a class="nav-link active" href="kelas.php"><i class="fa-solid fa-graduation-cap"></i> Kelas</a>
+    </nav>
+</div>
+
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="mb-5">
+            <h2 class="fw-bold text-dark">Profil Pengguna</h2>
+            <p class="text-muted">Informasi data diri resmi yang terdaftar pada sistem Satu TI.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm text-center p-4 rounded-4">
+                    <div class="mx-auto mb-3 user-avatar-large">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <h5 class="fw-bold mb-1"><?= htmlspecialchars($user['nama_lengkap']) ?></h5>
+                    <p class="text-muted small mb-3"><?= htmlspecialchars($user['nim_nip']) ?></p>
+                    <span class="badge bg-success-subtle text-success px-3 rounded-pill"><?= $role_display ?></span>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm p-4 rounded-4">
+                    <h5 class="fw-bold mb-4">Detail Informasi</h5>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label class="small text-muted fw-bold mb-1">EMAIL INSTITUSI</label>
+                            <p class="mb-0 fw-semibold"><?= htmlspecialchars($user['email']) ?></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small text-muted fw-bold mb-1">TEMPAT LAHIR</label>
+                            <p class="mb-0 fw-semibold"><?= htmlspecialchars($user['tempat_lahir']) ?></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small text-muted fw-bold mb-1">TANGGAL LAHIR</label>
+                            <p class="mb-0 fw-semibold"><?= date('d F Y', strtotime($user['tanggal_lahir'])) ?></p>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="small text-muted fw-bold mb-1">TANGGAL PENDAFTARAN</label>
+                            <p class="mb-0 fw-semibold"><?= date('d/m/Y', strtotime($user['waktu_daftar'])) ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="portal-footer">
+    <div class="container-fluid"> <div class="row gy-4">
+            <div class="col-lg-4">
+                <img src="image/satuti.png" class="footer-logo" alt="Logo Satu TI"> <p class="small opacity-50 pe-lg-5 text-justify">
+                    Program Studi S1 Teknologi Informasi USU berfokus pada keunggulan akademik dan riset di bidang Data Science.
+                </p>
+            </div>
+
+            <div class="col-lg-4">
+                <h6 class="footer-title text-white">Navigasi</h6>
+                <ul class="list-unstyled">
+                    <li><a href="index.php" class="text-decoration-none text-secondary small">Beranda</a></li>
+                    <li><a href="profil_dosen.php" class="text-decoration-none text-secondary small">Dosen</a></li>
+                    <li><a href="#" class="text-decoration-none text-secondary small">Jadwal Perkuliahan</a></li>
+                    <li><a href="kelas.php" class="text-decoration-none text-secondary small">Informasi Kelas</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4">
+                <h6 class="footer-title text-white">Kontak Kami</h6>
+                <p class="small mb-2"><i class="fa-solid fa-location-dot me-2 text-success"></i> Gedung Fasilkom-TI, Kampus USU, Medan</p>
+                <p class="small mb-2"><i class="fa-solid fa-envelope me-2 text-success"></i> ti@usu.ac.id</p>
+                <p class="small"><i class="fa-solid fa-phone me-2 text-success"></i> (061) 8218XXX</p>
+            </div>
+        </div>
+
+        <hr class="my-5 opacity-10">
+        <div class="text-center small opacity-50">
+            © 2025 S1 Teknologi Informasi – Universitas Sumatera Utara.
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

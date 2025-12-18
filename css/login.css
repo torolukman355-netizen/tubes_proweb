@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    /* Background gambar gedung bata/kampus dengan overlay gelap */
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                url('../image/gedung.jpeg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- Container Kartu --- */
+.login-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 450px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+
+    /* --- TAMBAHKAN BARIS INI --- */
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+/* --- Header / Logo --- */
+/* --- Pengaturan Gambar Logo --- */
+.login-header {
+    text-align: center; /* Memastikan konten di tengah */
+    margin-bottom: 30px;
+}
+
+.logo-img {
+    display: block;
+    margin: 0 auto;       /* Trik jitu agar gambar block berada di tengah */
+    max-width: 240px;     /* Batasi lebar logo agar tidak memenuhi kartu */
+    height: 70px;         /* Tinggi menyesuaikan otomatis */
+    object-fit: contain;  /* Menjaga proporsi gambar */
+}
+/* --- Form Group (Label + Input) --- */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* Style Input Umum */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    background-color: #F0F5FA; /* Warna abu kebiruan khas */
+    border-radius: 6px;
+    font-size: 15px;
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #00995D;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(0, 153, 93, 0.1);
+}
+
+/* --- Password Container (Untuk Ikon Mata) --- */
+.password-container {
+    position: relative; /* Wajib relative agar ikon bisa absolute */
+    width: 100%;
+}
+
+.password-container input {
+    padding-right: 45px; /* Beri ruang di kanan agar teks tidak menabrak ikon */
+}
+
+.eye-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #999;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.eye-icon:hover {
+    color: #00995D;
+}
+
+/* --- Checkbox --- */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.checkbox-container input {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    accent-color: #00995D;
+    cursor: pointer;
+}
+
+.checkbox-container label {
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* --- Tombol Login --- */
+button {
+    background-color: #00BFA6;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%; /* Tombol lebar penuh (atau gunakan float: right jika ingin seperti gambar persis) */
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #009e8a;
+}
+
+/* --- Text Footer --- */
+.signup-text {
+    text-align: right; /* Posisi di kanan sesuai gambar referensi */
+    font-size: 14px;
+    color: #666;
+}
+
+.signup-text a {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+/* --- Tambahan untuk Halaman Reset --- */
+.form-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin-top: 10px;
+    font-weight: 400;
+}
+/* --- Definisi Animasi Fade In --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Mulai dari posisi agak ke bawah */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);    /* Kembali ke posisi asal */
+    }
+}
+/* --- Bubble Alert Error --- */
+.error-message {
+    background-color: #fee2e2; /* Background merah muda soft */
+    border: 1px solid #ef4444; /* Garis pinggir merah */
+    color: #b91c1c;            /* Teks merah gelap */
+    padding: 12px 15px;
+    border-radius: 8px;        /* Sudut melengkung */
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    display: flex;             /* Agar ikon dan teks sejajar */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;                 /* Jarak ikon dengan teks */
+    animation: shake 0.3s ease-in-out; /* Animasi getar */
+}
+
+/* Animasi Getar (Efek kaget/notice) */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.course-info-box {
+    margin: 1.2rem 0;
+    padding: 12px;
+    background: #f8fafc;
+    border-left: 4px solid #1a531b;
+    border-radius: 6px;
+}
+
+.course-info-box .label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.course-info-box .course-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}

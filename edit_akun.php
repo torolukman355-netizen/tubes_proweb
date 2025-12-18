@@ -1,0 +1,187 @@
+<?php
+session_start();
+include "koneksi.php"; // Pastikan di dalam file ini menggunakan $koneksi
+
+// 1. Perbaikan: Sesuaikan kunci session dengan login.php
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+$id_user = $_SESSION['user_id'];
+$pesan = "";
+
+// 2. Ambil data lama (Sesuaikan nama kolom: nama_lengkap, nim_nip)
+$query = mysqli_query($koneksi, "SELECT * FROM users WHERE id = '$id_user'");
+$data = mysqli_fetch_assoc($query);
+
+// 3. Proses Update Data
+if (isset($_POST['simpan'])) {
+    $nama     = htmlspecialchars($_POST['nama']);
+    $email    = htmlspecialchars($_POST['email']);
+    $tempat   = htmlspecialchars($_POST['tempat']);
+    $tanggal  = $_POST['tanggal'];
+    $password = $_POST['password'];
+
+    if (!empty($password)) {
+        // Jika ganti password
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $update = mysqli_query($koneksi, "UPDATE users SET 
+            nama_lengkap='$nama', email='$email', tempat_lahir='$tempat', 
+            tanggal_lahir='$tanggal', password='$password_hash' 
+            WHERE id='$id_user'");
+    } else {
+        // Jika password dikosongkan
+        $update = mysqli_query($koneksi, "UPDATE users SET 
+            nama_lengkap='$nama', email='$email', tempat_lahir='$tempat', 
+            tanggal_lahir='$tanggal' 
+            WHERE id='$id_user'");
+    }
+
+    if ($update) {
+        $pesan = "<div class='alert alert-success border-0 shadow-sm'>Data berhasil diperbarui!</div>";
+        // Refresh data terbaru agar input tidak menampilkan data lama
+        $query = mysqli_query($koneksi, "SELECT * FROM users WHERE id = '$id_user'");
+        $data = mysqli_fetch_assoc($query);
+    } else {
+        $pesan = "<div class='alert alert-danger border-0 shadow-sm'>Gagal memperbarui data.</div>";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satu TI - Pengaturan Akun</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> </head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand me-4" href="index.php">
+                <img src="image/logo usu.jpg" alt="USU" style="height: 40px;">
+                <img src="image/satuti.png" alt="Satu TI" class="ms-1" style="height: 40px;">
+            </a>
+        </div>
+        <div class="dropdown">
+            <a class="d-flex align-items-center gap-3 text-decoration-none" href="#" data-bs-toggle="dropdown">
+                <div class="text-end d-none d-sm-block">
+                    <div class="fw-bold text-dark small"><?= htmlspecialchars($data['nama_lengkap']); ?></div>
+                    <div class="text-muted" style="font-size: 0.7rem;">Mahasiswa Aktif</div>
+                </div>
+                <div style="width: 38px; height: 38px; background: var(--usu-green); border-radius: 10px; display: grid; place-items: center; color: white;">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg">
+                <li><a class="dropdown-item" href="profil.php"><i class="fa-solid fa-id-card me-2"></i> Profil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="logout.php"><i class="fa-solid fa-power-off me-2"></i> Keluar</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="sidebar">
+    <nav class="nav flex-column">
+        <a class="nav-link" href="index.php"><i class="fa-solid fa-house"></i> Beranda</a>
+        <a class="nav-link" href="profil_dosen.php"><i class="fa-solid fa-chalkboard-user"></i> Dosen</a>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fa-solid fa-calendar-days"></i> Jadwal</a>
+            <ul class="dropdown-menu border-0 shadow-sm ms-3">
+                <li><a class="dropdown-item" href="jadwal_dosen.php">Jadwal Dosen</a></li>
+                <li><a class="dropdown-item" href="jadwal_mahasiswa.php">Jadwal Kuliah</a></li>
+            </ul>
+        </div>
+        <a class="nav-link" href="kelas.php"><i class="fa-solid fa-graduation-cap"></i> Kelas</a>
+    </nav>
+</div>
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="mb-4">
+            <h2 class="fw-bold text-dark">Edit Akun</h2>
+            <p class="text-muted">Perbarui informasi profil dan keamanan akun Anda.</p>
+        </div>
+
+        <?= $pesan; ?>
+
+        <div class="card border-0 shadow-sm p-4 rounded-4">
+            <form method="post">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Nama Lengkap</label>
+                        <input type="text" class="form-control" name="nama" value="<?= htmlspecialchars($data['nama_lengkap']); ?>" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">NIM / NIP (Read Only)</label>
+                        <input type="text" class="form-control bg-light" value="<?= htmlspecialchars($data['nim_nip']); ?>" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Email Institusi</label>
+                        <input type="email" class="form-control" name="email" value="<?= htmlspecialchars($data['email']); ?>" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Password Baru</label>
+                        <input type="password" class="form-control" name="password" placeholder="Kosongkan jika tidak ingin diubah">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Tempat Lahir</label>
+                        <input type="text" class="form-control" name="tempat" value="<?= htmlspecialchars($data['tempat_lahir']); ?>" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Tanggal Lahir</label>
+                        <input type="date" class="form-control" name="tanggal" value="<?= $data['tanggal_lahir']; ?>" required>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <button type="submit" name="simpan" class="btn btn-success px-4 rounded-pill">
+                            <i class="fa-solid fa-floppy-disk me-2"></i> Simpan Perubahan
+                        </button>
+                        <a href="profil.php" class="btn btn-outline-secondary px-4 rounded-pill ms-2">Batal</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer class="portal-footer">
+    <div class="container-fluid px-5">
+        <div class="row gy-4">
+            <div class="col-lg-4">
+                <div class="text-white fw-bold fs-4 mb-3">SATU TI</div>
+                <p class="small opacity-50 pe-lg-5">Program Studi S1 Teknologi Informasi USU berfokus pada keunggulan akademik dan riset di bidang Data Science.</p>
+                <div class="d-flex gap-3 mt-4 footer-socials">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h6 class="footer-title">Navigasi</h6>
+                <a href="index.php" class="footer-link">Beranda</a>
+                <a href="profil_dosen.php" class="footer-link">Dosen</a>
+                <a href="jadwal_mahasiswa.php" class="footer-link">Jadwal Kuliah</a>
+            </div>
+            <div class="col-lg-4">
+                <h6 class="footer-title">Kontak Kami</h6>
+                <div class="contact-info text-white-50">
+                    <p class="small"><i class="fas fa-map-marker-alt me-2 text-success"></i> Gedung Fasilkom-TI, Kampus USU, Medan</p>
+                    <p class="small"><i class="fas fa-envelope me-2 text-success"></i> ti@usu.ac.id</p>
+                </div>
+            </div>
+        </div>
+        <hr class="my-5 opacity-10">
+        <div class="text-center small opacity-50">© 2025 S1 Teknologi Informasi – Universitas Sumatera Utara.</div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

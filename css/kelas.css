@@ -1,0 +1,153 @@
+:root {
+    --green-primary: #10b981;
+    --green-dark: #065f46;
+    --green-soft: #f0fdf4;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-500: #64748b;
+    --slate-800: #1e293b;
+    --white: #ffffff;
+    --glass: rgba(255, 255, 255, 0.85);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --sidebar-width: 260px; /* Definisi lebar sidebar */
+    --usu-green: #1a531b;   /* Warna hijau khas USU */
+    --usu-accent: #f0fdf4;
+}
+
+body {
+    background-color: var(--slate-50);
+    color: var(--slate-800);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Navbar Glassmorphism */
+.navbar {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 0.75rem 1.5rem;
+    z-index: 1050;
+}
+
+.navbar-brand img { height: 45px; transition: var(--transition); }
+.navbar-brand:hover img { transform: scale(1.05); }
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+}
+.search-box input {
+    border-radius: 50px;
+    padding-left: 45px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    height: 42px;
+    transition: var(--transition);
+}
+.search-box input:focus {
+    box-shadow: 0 0 0 4px rgba(26, 83, 27, 0.1);
+    border-color: var(--usu-green);
+    outline: none;
+}
+.search-box i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--slate-500);
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: white;
+    border-right: 1px solid #e2e8f0;
+    padding-top: 90px;
+    position: fixed;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.nav-link {
+    padding: 12px 20px;
+    margin: 4px 15px;
+    border-radius: 12px;
+    color: var(--slate-500);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+.nav-link i { font-size: 1.1rem; width: 30px; }
+.nav-link:hover {
+    background: var(--usu-accent);
+    color: var(--usu-green);
+    transform: translateX(5px);
+}
+.nav-link.active {
+    background: var(--usu-green) !important;
+    color: white !important;
+    box-shadow: 0 10px 15px -3px rgba(26, 83, 27, 0.3);
+}
+
+/* --- Main Content --- */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 110px 40px 40px;
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+/* Modern Cards for Classes */
+.card {
+    border: none;
+    background: var(--white);
+    border-radius: 24px;
+    transition: var(--transition);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.badge-aktif {
+    background-color: var(--green-soft);
+    color: var(--green-primary);
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+}
+
+/* Footer */
+.portal-footer {
+    margin-left: var(--sidebar-width);
+    background: #0f172a;
+    color: #94a3b8;
+    padding: 60px 0 20px;
+}
+
+.footer-title { color: white; font-weight: 700; margin-bottom: 20px; }
+.footer-link { color: #94a3b8; text-decoration: none; transition: var(--transition); display: block; margin-bottom: 10px; }
+.footer-link:hover { color: #10b981; padding-left: 8px; }
+
+/* Animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.main-content > * {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@media (max-width: 992px) {
+    .sidebar { transform: translateX(-100%); }
+    .main-content, .portal-footer { margin-left: 0; padding: 100px 20px 20px; }
+}
+
