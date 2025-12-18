@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- 1. FITUR TOGGLE PASSWORD (MATA) ---
     if (toggleIcon && passwordInput) {
         toggleIcon.addEventListener('click', function () {
-            // Cek tipe input saat ini
+     
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
             
-            // Ubah tampilan icon (transparansi)
+         
             if (type === 'text') {
                 toggleIcon.style.opacity = '1';
                 toggleIcon.style.color = '#333';
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loginForm.addEventListener('submit', function(e) {
          
             if (usernameInput.value.trim() === "" || passwordInput.value.trim() === "") {
-                e.preventDefault(); // Cegah kirim jika kosong
+                e.preventDefault(); 
                 alert("Harap isi Username dan Password!");
                 return;
             }

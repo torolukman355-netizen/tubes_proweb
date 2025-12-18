@@ -21,7 +21,7 @@
                 modalContent.innerHTML = konten;
             });
 
-            // Opsional: Bersihkan konten saat modal ditutup agar tidak ada "bayangan" teks lama
+        
             beritaModal.addEventListener('hidden.bs.modal', () => {
                 beritaModal.querySelector('#modalContent').innerHTML = '';
             });

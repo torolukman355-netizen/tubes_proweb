@@ -83,7 +83,7 @@ function filterHari(hari, el) {
     });
 }
 
-// Jalankan fungsi untuk hari Rabu agar data langsung muncul
+
 window.onload = function() {
     const defaultBtn = document.querySelector(".link-hari:nth-child(3)");
     filterHari("Rabu", defaultBtn);

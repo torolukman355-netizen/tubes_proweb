@@ -8,7 +8,6 @@
 }
 
 body {
-    /* Background gambar gedung bata/kampus dengan overlay gelap */
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                 url('../image/gedung.jpeg');
     background-size: cover;
@@ -37,23 +36,20 @@ body {
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     margin: 20px;
-
-    /* --- TAMBAHKAN BARIS INI --- */
     animation: fadeInUp 0.8s ease-out forwards;
 }
 /* --- Header / Logo --- */
-/* --- Pengaturan Gambar Logo --- */
 .login-header {
-    text-align: center; /* Memastikan konten di tengah */
+    text-align: center; 
     margin-bottom: 30px;
 }
 
 .logo-img {
     display: block;
-    margin: 0 auto;       /* Trik jitu agar gambar block berada di tengah */
-    max-width: 240px;     /* Batasi lebar logo agar tidak memenuhi kartu */
-    height: 70px;         /* Tinggi menyesuaikan otomatis */
-    object-fit: contain;  /* Menjaga proporsi gambar */
+    margin: 0 auto;      
+    max-width: 240px;    
+    height: 70px;        
+    object-fit: contain; 
 }
 /* --- Form Group (Label + Input) --- */
 .form-group {
@@ -74,7 +70,7 @@ input[type="password"] {
     width: 100%;
     padding: 12px 16px;
     border: 1px solid #e2e8f0;
-    background-color: #F0F5FA; /* Warna abu kebiruan khas */
+    background-color: #F0F5FA; 
     border-radius: 6px;
     font-size: 15px;
     color: #333;
@@ -90,12 +86,12 @@ input:focus {
 
 /* --- Password Container (Untuk Ikon Mata) --- */
 .password-container {
-    position: relative; /* Wajib relative agar ikon bisa absolute */
+    position: relative;
     width: 100%;
 }
 
 .password-container input {
-    padding-right: 45px; /* Beri ruang di kanan agar teks tidak menabrak ikon */
+    padding-right: 45px; 
 }
 
 .eye-icon {
@@ -146,7 +142,7 @@ button {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    width: 100%; /* Tombol lebar penuh (atau gunakan float: right jika ingin seperti gambar persis) */
+    width: 100%; 
     transition: background-color 0.3s;
     margin-bottom: 20px;
 }
@@ -157,7 +153,7 @@ button:hover {
 
 /* --- Text Footer --- */
 .signup-text {
-    text-align: right; /* Posisi di kanan sesuai gambar referensi */
+    text-align: right; 
     font-size: 14px;
     color: #666;
 }
@@ -171,7 +167,7 @@ button:hover {
 .signup-text a:hover {
     text-decoration: underline;
 }
-/* --- Tambahan untuk Halaman Reset --- */
+
 .form-text {
     font-size: 14px;
     color: #666;
@@ -179,33 +175,33 @@ button:hover {
     margin-top: 10px;
     font-weight: 400;
 }
-/* --- Definisi Animasi Fade In --- */
+/* --- Animasi Fade In --- */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px); /* Mulai dari posisi agak ke bawah */
+        transform: translateY(20px); 
     }
     to {
         opacity: 1;
-        transform: translateY(0);    /* Kembali ke posisi asal */
+        transform: translateY(0);    
     }
 }
 /* --- Bubble Alert Error --- */
 .error-message {
-    background-color: #fee2e2; /* Background merah muda soft */
-    border: 1px solid #ef4444; /* Garis pinggir merah */
-    color: #b91c1c;            /* Teks merah gelap */
+    background-color: #fee2e2; 
+    border: 1px solid #ef4444; 
+    color: #b91c1c;           
     padding: 12px 15px;
-    border-radius: 8px;        /* Sudut melengkung */
+    border-radius: 8px;     
     margin-bottom: 20px;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
-    display: flex;             /* Agar ikon dan teks sejajar */
+    display: flex;           
     align-items: center;
     justify-content: center;
-    gap: 10px;                 /* Jarak ikon dengan teks */
-    animation: shake 0.3s ease-in-out; /* Animasi getar */
+    gap: 10px;               
+    animation: shake 0.3s ease-in-out; 
 }
 
 /* Animasi Getar (Efek kaget/notice) */

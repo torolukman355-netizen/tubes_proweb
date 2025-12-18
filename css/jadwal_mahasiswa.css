@@ -1,17 +1,13 @@
 :root {
-    /* Identitas Visual USU */
+
     --usu-green: #1a531b;
     --usu-green-dark: #144215;
     --usu-accent: #f0fdf4;
-    
-    /* Palette UI */
     --slate-50: #f8fafc;
     --slate-100: #f1f5f9;
     --slate-500: #64748b;
     --slate-800: #1e293b;
     --white: #ffffff;
-    
-    /* Layout & Efek */
     --sidebar-width: 260px;
     --glass: rgba(255, 255, 255, 0.85);
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -19,7 +15,7 @@
     --shadow-hover: 0 14px 32px rgba(0,0,0,.15);
 }
 
-/* --- 2. Base Styles --- */
+/* ---  Base Styles --- */
 body {
     background-color: var(--slate-50);
     color: var(--slate-800);
@@ -28,7 +24,7 @@ body {
     overflow-x: hidden;
 }
 
-/* --- 3. Navbar & Search Box --- */
+/* --- Navbar & Search Box --- */
 .navbar {
     background: var(--glass);
     backdrop-filter: blur(10px);
@@ -87,7 +83,7 @@ body {
             color: var(--usu-green); 
         }
 
-/* --- 4. Sidebar Navigasi --- */
+/* --- Sidebar Navigasi --- */
 .sidebar {
     width: var(--sidebar-width);
     height: 100vh;
@@ -129,13 +125,12 @@ body {
     box-shadow: 0 10px 15px -3px rgba(26, 83, 27, 0.3);
 }
 
-/* --- 5. Dropdown Logic (Navbar & Sidebar) --- */
+/* --- Dropdown Logic (Navbar & Sidebar) --- */
 .dropdown-menu {
     border: none;
     border-radius: 12px;
     box-shadow: var(--shadow-soft);
-    display: none; /* Penting: Biarkan Bootstrap JS yang mengontrol display */
-    opacity: 0;
+    display: none; 
     transform: translateY(10px);
     transition: opacity .25s ease, transform .25s ease;
 }
@@ -146,14 +141,14 @@ body {
     transform: translateY(0);
 }
 
-/* --- 6. Main Content Area --- */
+/* ---  Main Content Area --- */
 .main-content {
     margin-left: var(--sidebar-width);
     padding: 110px 40px 40px;
     min-height: 100vh;
 }
 
-/* --- 7. Komponen: Card & Item --- */
+/* --- Komponen: Card & Item --- */
 .day-card {
     border: none;
     border-radius: 18px;
@@ -185,9 +180,9 @@ body {
     background: var(--white);
 }
 
-/* --- 8. Footer Portal --- */
+/* --- Footer Portal --- */
 .portal-footer {
-    background-color: #1a531b; /* Warna gelap */
+    background-color: #1a531b; 
     border-top: 1px solid #ddd;
     padding: 40px 40px 20px;
     color: #94a3b8;
@@ -196,7 +191,7 @@ body {
 
 .footer-logo {
     height: 40px;
-    filter: brightness(0) invert(1); /* Mengubah logo menjadi putih agar terlihat di bg gelap */
+    filter: brightness(0) invert(1); 
     margin-bottom: 20px;
 }
 
@@ -219,7 +214,7 @@ body {
     padding-left: 6px;
 }
 
-/* --- 9. Animasi & Responsif --- */
+/* ---  Animasi & Responsif --- */
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }

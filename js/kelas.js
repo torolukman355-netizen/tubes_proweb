@@ -1,5 +1,4 @@
- // Script Identik dengan Index: Scroll Effect & Navigasi
-    document.addEventListener('DOMContentLoaded', function () {
+   document.addEventListener('DOMContentLoaded', function () {
         // Navbar Scroll shadow
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');

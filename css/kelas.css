@@ -9,8 +9,8 @@
     --white: #ffffff;
     --glass: rgba(255, 255, 255, 0.85);
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --sidebar-width: 260px; /* Definisi lebar sidebar */
-    --usu-green: #1a531b;   /* Warna hijau khas USU */
+    --sidebar-width: 260px; 
+    --usu-green: #1a531b;  
     --usu-accent: #f0fdf4;
 }
 

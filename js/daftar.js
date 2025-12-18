@@ -5,18 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const passwordInputs = document.querySelectorAll('input[type="password"]');
     
     passwordInputs.forEach(function(passwordInput) {
-        // Buat wrapper agar posisi ikon rapi
+     
         const wrapper = document.createElement('div');
         wrapper.style.position = 'relative';
         wrapper.style.width = '100%';
         wrapper.style.display = 'flex';
         wrapper.style.alignItems = 'center';
         
-        // Masukkan wrapper ke sebelum input, lalu pindahkan input ke dalam wrapper
+       
         passwordInput.parentNode.insertBefore(wrapper, passwordInput);
         wrapper.appendChild(passwordInput);
         
-        // Buat tombol mata
+
         const toggleBtn = document.createElement('span');
         toggleBtn.innerHTML = '👁️'; 
         toggleBtn.style.position = 'absolute';
@@ -27,8 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleBtn.style.userSelect = 'none'; 
         
         wrapper.appendChild(toggleBtn);
-        
-        // Event Klik Mata
+   
         toggleBtn.addEventListener('click', function() {
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";

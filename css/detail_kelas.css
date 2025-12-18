@@ -1,4 +1,3 @@
-/* --- Konfigurasi Variabel Utama --- */
 :root {
     --usu-green: #1a531b;
     --usu-green-dark: #144215;
@@ -90,7 +89,7 @@ body {
     position: fixed;
     z-index: 1000;
     transition: var(--transition);
-    overflow-y: visible; /* Agar dropdown tidak terpotong */
+    overflow-y: visible;
 }
 
 .nav-link {
@@ -210,7 +209,6 @@ body {
 /* --- Footer Logo Styling --- */
 .footer-logo {
     height: 40px;
-    /* Filter ini mengubah logo hitam menjadi putih agar terlihat di bg gelap */
     filter: brightness(0) invert(1); 
     transition: var(--transition);
 }

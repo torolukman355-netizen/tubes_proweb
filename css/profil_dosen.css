@@ -1,11 +1,7 @@
-/* --- Konfigurasi Variabel Utama --- */
 :root {
-    /* Warna Brand USU */
     --usu-green: #1a531b;
     --usu-green-dark: #144215;
     --usu-accent: #f0fdf4;
-    
-    /* Palette Warna UI */
     --green-primary: #10b981;
     --green-soft: #f0fdf4;
     --slate-50: #f8fafc;
@@ -13,8 +9,6 @@
     --slate-500: #64748b;
     --slate-800: #1e293b;
     --white: #ffffff;
-    
-    /* Layout & Efek */
     --sidebar-width: 260px;
     --glass: rgba(255, 255, 255, 0.85);
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);

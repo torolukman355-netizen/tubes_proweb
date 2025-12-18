@@ -10,7 +10,6 @@ body {
     font-family: 'Inter', sans-serif;
     height: 100vh;
     width: 100%;
-    /* Pastikan path gambar background benar */
     background-image: url('../image/gedung.jpeg'); 
     background-size: cover;
     background-position: center;
@@ -22,7 +21,7 @@ body {
     overflow: hidden;
 }
 
-/* --- FILTER BACKGROUND (Agar tidak polos) --- */
+/* --- FILTER BACKGROUND  --- */
 body::before {
     content: '';
     position: absolute;
@@ -71,7 +70,6 @@ body::before {
     width: 240px;
     height: 70px;
     margin: 0 auto 20px auto;
-    /* GANTI DENGAN NAMA FILE LOGO KAMU */
     background-image: url('../image/logo.png'); 
     background-size: contain;
     background-repeat: no-repeat;
@@ -90,21 +88,18 @@ form {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 18px; /* Jarak antar elemen form vertikal */
+    gap: 18px;
 }
 
-/* --- [BARU] CSS UNTUK INPUT SEJAJAR --- */
-/* Class ini dipakai membungkus Tempat & Tanggal Lahir */
 .input-row {
     display: flex;
-    gap: 10px; /* Jarak kiri-kanan antar input */
+    gap: 10px;
     width: 100%;
 }
 
 .input-row input {
-    width: 50%; /* Masing-masing ambil setengah lebar */
+    width: 50%; 
 }
-/* --------------------------------------- */
 
 /* INPUT STYLE UMUM */
 input, select {
@@ -186,13 +181,12 @@ button:active {
         padding: 30px 20px;
     }
 
-    /* Agar di HP inputnya turun ke bawah lagi (tidak sempit) */
     .input-row {
         flex-direction: column;
-        gap: 18px; /* Samakan dengan gap form utama */
+        gap: 18px; 
     }
     
     .input-row input {
-        width: 100%; /* Kembali lebar penuh */
+        width: 100%; 
     }
 }
