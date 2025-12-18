@@ -36,10 +36,10 @@
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 py-2" style="border-radius: 15px;">
-                <li><a class="dropdown-item py-2" href="#"><i class="fa-solid fa-id-card me-2"></i> Profil Saya</a></li>
-                <li><a class="dropdown-item py-2" href="#"><i class="fa-solid fa-gear me-2"></i> Pengaturan</a></li>
+                <li><a class="dropdown-item py-2" href="profil.html"><i class="fa-solid fa-id-card me-2"></i> Profil Saya</a></li>
+                <li><a class="dropdown-item py-2" href="edit_akun.html"><i class="fa-solid fa-gear me-2"></i> Pengaturan</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item py-2 text-danger" href="#"><i class="fa-solid fa-power-off me-2"></i> Keluar</a></li>
+                <li><a class="dropdown-item py-2 text-danger" href="logout.html"><i class="fa-solid fa-power-off me-2"></i> Keluar</a></li>
             </ul>
         </div>
     </div>
@@ -47,16 +47,16 @@
 
 <div class="sidebar">
     <nav class="nav flex-column">
-        <a class="nav-link" href="index.php"><i class="fa-solid fa-house"></i> Beranda</a>
-        <a class="nav-link" href="profil_dosen.php"><i class="fa-solid fa-chalkboard-user"></i> Dosen</a>
+        <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i> Beranda</a>
+        <a class="nav-link" href="profil_dosen.html"><i class="fa-solid fa-chalkboard-user"></i> Dosen</a>
         <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="jadwalDrop" data-bs-toggle="dropdown"><i class="fa-solid fa-calendar-days"></i> Jadwal</a>
             <ul class="dropdown-menu border-0 shadow-sm ms-3">
-                <li><a class="dropdown-item" href="jadwal_dosen.php">Jadwal Dosen</a></li>
-                <li><a class="dropdown-item" href="jadwal_mahasiswa.php">Jadwal Kuliah</a></li>
+                <li><a class="dropdown-item" href="jadwal_dosen.html">Jadwal Dosen</a></li>
+                <li><a class="dropdown-item" href="jadwal_mahasiswa.html">Jadwal Kuliah</a></li>
             </ul>
         </div>
-        <a class="nav-link active" href="kelas.php"><i class="fa-solid fa-graduation-cap"></i> Kelas</a>
+        <a class="nav-link active" href="kelas.html"><i class="fa-solid fa-graduation-cap"></i> Kelas</a>
     </nav>
 </div>
 
@@ -174,48 +174,71 @@ window.onload = function() {
     filterHari("Rabu", defaultBtn);
 };
 </script>
-<footer class="portal-footer mt-5">
-    <div class="container-fluid px-4">
+<footer class="portal-footer">
+    <div class="container-fluid px-5">
+
         <div class="row gy-4">
-            <div class="col-md-4">
-                <img src="image/satuti.png" alt="Logo Satu TI" class="footer-logo mb-3">
-                <h6 class="footer-title">Program Studi</h6>
-                <p class="small mb-1">S1 Teknologi Informasi</p>
-                <p class="small mb-1">Fakultas Ilmu Komputer dan Teknologi Informasi</p>
-                <p class="small">Universitas Sumatera Utara</p>
-            </div>
-            </div>
-    </div>
-            <div class="col-md-4">
-                <h6 class="footer-title">Kontak</h6>
-                <p class="small mb-1">
-                    <i class="fa-solid fa-envelope me-2"></i> ti@usu.ac.id
+            <!-- Logo & Deskripsi -->
+            <div class="col-lg-4">
+                <img 
+                    src="image/logo.png" 
+                    alt="Logo Satu TI" 
+                    class="mb-3"
+                    style="filter: brightness(0) invert(1); height: 40px;"
+                >
+
+                <p class="small opacity-50 pe-lg-5 text-justify">
+                    Program Studi S1 Teknologi Informasi USU berfokus pada keunggulan
+                    akademik dan riset di bidang Data Science untuk masa depan Indonesia.
                 </p>
-                <p class="small mb-1">
-                    <i class="fa-solid fa-phone me-2"></i> (061) 821-xxxx
-                </p>
-                <p class="small">
-                    <i class="fa-solid fa-location-dot me-2"></i> Medan, Sumatera Utara
-                </p>
+
+                <div class="d-flex gap-3 mt-4">
+                    <a href="#" class="text-white opacity-50 hover-opacity-100">
+                        <i class="fa-brands fa-instagram fs-5"></i>
+                    </a>
+                    <a href="#" class="text-white opacity-50 hover-opacity-100">
+                        <i class="fa-brands fa-facebook fs-5"></i>
+                    </a>
+                    <a href="#" class="text-white opacity-50 hover-opacity-100">
+                        <i class="fa-brands fa-youtube fs-5"></i>
+                    </a>
+                </div>
             </div>
 
-            <div class="col-md-4">
-                <h6 class="footer-title">Tautan</h6>
-                <ul class="list-unstyled small">
-                    <li><a href="index.php" class="footer-link">Beranda</a></li>
-                    <li><a href="profil_dosen.php" class="footer-link">Dosen</a></li>
-                    <li><a href="#" class="footer-link">Jadwal</a></li>
-                    <li><a href="kelas.php" class="footer-link">Kelas</a></li>
-                </ul>
+            <!-- Navigasi -->
+            <div class="col-lg-4 col-md-6">
+                <h6 class="footer-title">Navigasi</h6>
+                <a href="#" class="footer-link">Beranda</a>
+                <a href="profil_dosen.html" class="footer-link">Dosen</a>
+                <a href="jadwal_mahasiswa.html" class="footer-link">Jadwal Perkuliahan</a>
+                <a href="kelas.html" class="footer-link">Informasi Kelas</a>
             </div>
 
+            <!-- Kontak -->
+            <div class="col-lg-4 col-md-6">
+                <h6 class="footer-title">Kontak Kami</h6>
+                <p class="small mb-2">
+                    <i class="fa-solid fa-location-dot me-2 text-success"></i>
+                    Gedung Fasilkom-TI, Kampus USU, Medan
+                </p>
+                <p class="small mb-2">
+                    <i class="fa-solid fa-envelope me-2 text-success"></i>
+                    ti@usu.ac.id
+                </p>
+                <p class="small mb-2">
+                    <i class="fa-solid fa-phone me-2 text-success"></i>
+                    (061) 8218XXX
+                </p>
+            </div>
         </div>
 
-        <hr class="my-3">
+        <hr class="my-5 opacity-10">
 
-        <div class="text-center small">
-            © 2025 Program Studi Teknologi Informasi — Universitas Sumatera Utara
+        <div class="text-center small opacity-50">
+            &copy; 2025 S1 Teknologi Informasi – Universitas Sumatera Utara.
+            All Rights Reserved.
         </div>
+
     </div>
 </footer>
 </body>

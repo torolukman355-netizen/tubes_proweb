@@ -174,7 +174,7 @@ body {
 /* --- 8. Footer Portal --- */
 .portal-footer {
     margin-left: var(--sidebar-width);
-    background-color: #0f172a; /* Warna gelap */
+    background-color: #1a531b; /* Warna gelap */
     border-top: 1px solid #ddd;
     padding: 40px 40px 20px;
     color: #94a3b8;
