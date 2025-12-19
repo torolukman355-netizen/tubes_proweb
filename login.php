@@ -50,38 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/login.css">
     
-    <style>
-        /* CSS Tambahan untuk memastikan posisi ikon mata pas */
-        .password-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-        .password-container input {
-            width: 100%;
-            padding-right: 40px; /* Ruang untuk ikon */
-        }
-        .eye-icon {
-            position: absolute;
-            right: 15px;
-            cursor: pointer;
-            color: #666;
-            transition: color 0.3s;
-        }
-        .eye-icon:hover {
-            color: #333;
-        }
-        .error-message {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #ffebee;
-            color: #c62828;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-    </style>
 </head>
 <body>
 
