@@ -2,18 +2,16 @@
 session_start();
 include "koneksi.php";
 
-// 1. PERBAIKAN: Menutup kurung kurawal yang hilang
+// 1. Cek status login
 if (isset($_SESSION['login'])) {
     header("Location: index.php");
     exit;
-} // <--- Kurung penutup tadi hilang di sini
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $username = trim($_POST['username']);
     $password = $_POST['password'];
 
-    // Pastikan variabel koneksi ($koneksi atau $conn) sesuai dengan isi koneksi.php
     $sql = "SELECT * FROM users WHERE nim_nip = ? OR email = ? LIMIT 1";
     $stmt = mysqli_prepare($koneksi, $sql);
     mysqli_stmt_bind_param($stmt, "ss", $username, $username);
@@ -26,10 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (password_verify($password, $user['password'])) {
             $_SESSION['login'] = true;
-            
-            // 2. PERBAIKAN UTAMA: Ganti 'id' menjadi 'user_id' agar cocok dengan profil.php
             $_SESSION['user_id'] = $user['id']; 
-            
             $_SESSION['nama']  = $user['nama_lengkap'];
             $_SESSION['role']  = $user['role'];
 
@@ -41,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $error = "Akun tidak ditemukan!";
     }
-
     mysqli_stmt_close($stmt);
 }
 ?>
@@ -53,44 +47,71 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login SATU</title>
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="css/login.css">
+    
+    <style>
+        /* CSS Tambahan untuk memastikan posisi ikon mata pas */
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .password-container input {
+            width: 100%;
+            padding-right: 40px; /* Ruang untuk ikon */
+        }
+        .eye-icon {
+            position: absolute;
+            right: 15px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+        .eye-icon:hover {
+            color: #333;
+        }
+        .error-message {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
 
     <div class="login-container">
       
-     <div class="login-header">
-          <img src="image/logo.png" 
-         alt="Logo Aplikasi" 
-         class="logo-img">
-         
-    </div>
+        <div class="login-header">
+            <img src="image/logo.png" alt="Logo Aplikasi" class="logo-img">
+        </div>
        
-<?php if (isset($error)) : ?>
-    <div class="error-message">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-        
-        <span><?= $error ?></span>
-    </div>
-<?php endif; ?>
+        <?php if (isset($error)) : ?>
+            <div class="error-message">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span><?= $error ?></span>
+            </div>
+        <?php endif; ?>
 
-<form method="post" id="loginForm" class="login-form">
-
+        <form method="post" id="loginForm" class="login-form">
             
             <div class="form-group">
                 <label for="username">Identitas (NIP/NIM/Email USU)</label>
-                <input type="text" id="username" name="username" placeholder=" " required>
+                <input type="text" id="username" name="username" placeholder="Masukkan ID atau Email" required>
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="password-container">
                     <input type="password" id="password" name="password" placeholder="••••••••" required>
-                    <span id="togglePassword" class="eye-icon" title="Lihat Password">👁️</span>
+                    <span id="togglePassword" class="eye-icon" title="Lihat Password">
+                        <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                    </span>
                 </div>
             </div>
 
@@ -99,11 +120,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="remember">Ingat Saya</label>
             </div>
 
-            <button type="submit">Login &rarr;</button>
-        
+            <button type="submit">Login <i class="fa-solid fa-arrow-right"></i></button>
         </form>
 
-       <div class="signup-text" style="text-align: center; margin-top: 20px;">
+        <div class="signup-text" style="text-align: center; margin-top: 20px;">
             <p style="margin-bottom: 10px;">
                 Lupa Password? <a href="reset.php">Reset di sini</a>
             </p>
@@ -113,6 +133,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-   <script src="js/login.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.querySelector('#togglePassword');
+            const passwordField = document.querySelector('#password');
+            const eyeIcon = document.querySelector('#eyeIcon');
+
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function () {
+                    // Cek tipe input saat ini
+                    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordField.setAttribute('type', type);
+                    
+                    // Ganti ikon mata buka/tutup
+                    if (type === 'text') {
+                        eyeIcon.classList.remove('fa-eye');
+                        eyeIcon.classList.add('fa-eye-slash');
+                    } else {
+                        eyeIcon.classList.remove('fa-eye-slash');
+                        eyeIcon.classList.add('fa-eye');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
