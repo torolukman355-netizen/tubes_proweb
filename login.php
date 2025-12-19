@@ -133,29 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const togglePassword = document.querySelector('#togglePassword');
-            const passwordField = document.querySelector('#password');
-            const eyeIcon = document.querySelector('#eyeIcon');
-
-            if (togglePassword) {
-                togglePassword.addEventListener('click', function () {
-                    // Cek tipe input saat ini
-                    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordField.setAttribute('type', type);
-                    
-                    // Ganti ikon mata buka/tutup
-                    if (type === 'text') {
-                        eyeIcon.classList.remove('fa-eye');
-                        eyeIcon.classList.add('fa-eye-slash');
-                    } else {
-                        eyeIcon.classList.remove('fa-eye-slash');
-                        eyeIcon.classList.add('fa-eye');
-                    }
-                });
-            }
-        });
-    </script>
+    <script src= "js/login.js"></script>
 </body>
 </html>
