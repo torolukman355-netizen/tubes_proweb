@@ -34,17 +34,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
     $sql = "INSERT INTO users 
             (nama_lengkap, nim_nip, email, password, tempat_lahir, tanggal_lahir, role)
             VALUES
             ('$nama', '$nim', '$email', '$password', '$tempat', '$tanggal', '$role')";
 
     if (mysqli_query($koneksi, $sql)) {
+        session_unset();    // Menghapus semua variabel sesi
+        session_destroy();
         echo "<script>
                 alert('Pendaftaran berhasil! Silakan Login.');
                 window.location='login.php';
               </script>";
+              exit;
     } else {
         $error = mysqli_error($koneksi);
         echo "<script>

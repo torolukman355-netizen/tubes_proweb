@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <div class="form-group">
                 <label for="username">Identitas (NIP/NIM/Email USU)</label>
-                <input type="text" id="username" name="username" placeholder="Contoh: 251402105" required>
+                <input type="text" id="username" name="username" placeholder=" " required>
             </div>
 
             <div class="form-group">

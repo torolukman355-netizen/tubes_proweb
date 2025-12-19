@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <form method="post">
         <div class="form-group">
-            <label>Identitas (NIM / Email)</label>
+            <label>Identitas (NIM / NIP / Email)</label>
             <input type="text" name="identitas" required>
         </div>
 

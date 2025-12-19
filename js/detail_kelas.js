@@ -1,4 +1,5 @@
-const kelasAktif = localStorage.getItem("kelas") || "TI - Kom A";
+const urlParams = new URLSearchParams(window.location.search);
+const kelasAktif = urlParams.get('kelas') || "TI - Kom A";
 document.getElementById("judulKelas").innerText = "Kelas " + kelasAktif;
 
 const jadwal = {
