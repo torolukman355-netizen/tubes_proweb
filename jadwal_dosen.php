@@ -66,7 +66,7 @@
         <!-- SELECT DOSEN -->
         <div class="mb-4" style="max-width:420px">
             <select class="form-select form-select-lg shadow-sm" id="pilihDosen" onchange="renderJadwal()">
-                <option value="">🎓 Pilih Dosen</option>
+                <option value="">Pilih Dosen</option>
                 <option value="ivan">Ivan Jaya, S.Si., M.Kom.</option>
                 <option value="ade">Ade Sarah Huzaifah, S.Kom., M.Kom.</option>
                 <option value="aghni">Aghni Syahmarani, S.Si., M.Si.</option>
